@@ -2,6 +2,63 @@
 
 Automated job application tool for the HKUST Career Portal. Scrapes filtered job listings, uses AI to tailor your CV and write a personalised cover letter per role, then auto-sends application emails where possible or gives you the direct apply link for everything else.
 
+Available as both a **CLI** and a **web UI** (React + FastAPI).
+
+---
+
+## Project Structure
+
+```
+Auto-Apply/
+├── backend/                        # Python — CLI + FastAPI server
+│   ├── api/
+│   │   ├── server.py               # FastAPI app; serves frontend/dist/ in production
+│   │   └── routes/
+│   │       ├── config_routes.py    # GET/PUT /api/config, file uploads
+│   │       ├── email.py            # POST /api/email/send
+│   │       ├── jobs.py             # GET /api/jobs, POST /api/jobs/scrape (SSE)
+│   │       └── process.py          # POST /api/process (SSE) — AI + DOCX per job
+│   ├── ai/
+│   │   ├── cover_letter_gen.py     # Cover letter generation via Dashscope
+│   │   └── cv_tailor.py            # CV tailoring via Dashscope
+│   ├── document/
+│   │   ├── cv_builder.py           # Builds tailored CV as DOCX
+│   │   └── letter_builder.py       # Builds cover letter as DOCX
+│   ├── mailer/
+│   │   └── outlook_sender.py       # Sends emails via Outlook COM (Win32)
+│   ├── scraper/
+│   │   ├── filter_options.py       # All HKUST filter labels and URL values
+│   │   └── job_scraper.py          # requests + BeautifulSoup scraper
+│   ├── state/
+│   │   └── job_store.py            # CSV load / save / deduplication
+│   ├── utils/
+│   │   └── helpers.py              # Shared utilities
+│   ├── data/                       # Your CV and data lake (not committed)
+│   │   ├── my_cv.docx
+│   │   └── data_lake.md
+│   ├── output/                     # Generated documents (not committed)
+│   │   ├── cv/
+│   │   └── cover_letters/
+│   ├── config.py                   # All configuration variables
+│   ├── main.py                     # CLI entry point
+│   └── requirements.txt
+│
+├── frontend/                       # React 18 + Vite + Tailwind
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── api/client.js           # fetch wrappers + SSE helpers
+│   │   ├── components/             # StatusBadge, ProgressLog, FilterPanel, JobTable
+│   │   └── pages/                  # Dashboard, Scrape, Jobs, Settings
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+├── .venv/                          # Shared Python venv (not committed)
+├── .gitignore
+├── CLAUDE.md
+└── README.md
+```
+
 ---
 
 ## Features
@@ -10,47 +67,7 @@ Automated job application tool for the HKUST Career Portal. Scrapes filtered job
 - **AI-tailored documents** — Dashscope `qwen3.6-flash` rewrites your CV and cover letter for each specific role
 - **Smart apply routing** — auto-sends via Outlook if the recruiter's email is listed; shows the external link and your documents otherwise
 - **Persistent job tracking** — CSV state file deduplicates across runs and records what you've applied to
-- **Modular codebase** — one `config.py` controls everything; each concern lives in its own package
-
----
-
-## Project Structure
-
-```
-Auto-Apply/
-├── .env                        # API key (never commit this)
-├── config.py                   # All configuration variables
-├── main.py                     # Entry point — run this
-│
-├── scraper/
-│   ├── filter_options.py       # All HKUST filter labels and URL values
-│   └── job_scraper.py          # requests + BeautifulSoup scraper
-│
-├── ai/
-│   ├── cv_tailor.py            # CV tailoring via Dashscope
-│   └── cover_letter_gen.py     # Cover letter generation via Dashscope
-│
-├── document/
-│   ├── cv_builder.py           # Builds tailored CV as DOCX
-│   └── letter_builder.py       # Builds cover letter as DOCX
-│
-├── mailer/
-│   └── outlook_sender.py       # Sends emails via Outlook COM (Win32)
-│
-├── state/
-│   └── job_store.py            # CSV load / save / deduplication
-│
-├── utils/
-│   └── helpers.py              # Shared utilities
-│
-├── data/
-│   ├── my_cv.docx              # Your CV (you provide this)
-│   └── data_lake.md            # Extra personal info for the AI
-│
-└── output/
-    ├── cv/                     # Tailored CVs (auto-generated)
-    └── cover_letters/          # Cover letters (auto-generated)
-```
+- **Web UI** — Dashboard, Scrape, Jobs, and Settings pages with live SSE progress during scraping and AI generation
 
 ---
 
@@ -58,24 +75,24 @@ Auto-Apply/
 
 ### 1. Clone and create the virtual environment
 
-```bash
+```powershell
 git clone <repo-url>
 cd Auto-Apply
 python -m venv .venv
-.venv\Scripts\pip install -r requirements.txt
+.venv\Scripts\pip install -r backend\requirements.txt
 ```
 
-### 2. Configure secrets — `.env`
+### 2. Configure secrets — `backend/.env`
 
 ```
 DASHSCOPE_API_KEY=sk-your-key-here
 ```
 
-### 3. Configure settings — `config.py`
+### 3. Configure settings — `backend/config.py`
 
 | Variable | What to set |
 |----------|-------------|
-| `SESSION_COOKIE` | Your HKUST portal `PHPSESSID` — grab it from browser DevTools → Network tab while on the job board |
+| `SESSION_COOKIE` | Your HKUST portal `PHPSESSID` — grab it from browser DevTools → Application → Cookies |
 | `USER_NAME` | Your full name (used in document headers and email sign-off) |
 | `USER_EMAIL` | Your email address (used in cover letter header) |
 | `BCC_EMAIL` | Optional BCC on outgoing emails (leave `""` to disable) |
@@ -85,30 +102,40 @@ DASHSCOPE_API_KEY=sk-your-key-here
 
 ### 4. Add your documents
 
-- Copy your CV to `data/my_cv.docx`
-- Fill in `data/data_lake.md` with background info the AI can draw on (achievements, goals, preferred roles, etc.)
+- Copy your CV to `backend/data/my_cv.docx`
+- Fill in `backend/data/data_lake.md` with background info the AI can draw on
 
 ---
 
 ## Usage
 
-```bash
-.venv\Scripts\python main.py
+### Web UI (recommended)
+
+```powershell
+# Terminal 1 — backend
+cd backend
+..\.venv\Scripts\uvicorn api.server:app --port 8000 --reload
+
+# Terminal 2 — frontend dev server (optional, for hot reload)
+cd frontend
+npm run dev
 ```
 
-The tool walks you through nine steps:
+Open **http://localhost:8000** (production build) or **http://localhost:5173** (dev server).
 
-| Step | What happens |
-|------|-------------|
-| 1 | **Filter selection** — choose industry, job type, location, mode, language, keyword |
-| 2 | **Scrape** — fetches matching jobs from the HKUST portal |
-| 3 | **Job list** — displays results with apply method (Email / Manual) per role |
-| 4 | **Select** — pick job numbers (`1,3-5`), `all`, or `back` to re-filter |
-| 5 | **AI processing** — tailors CV and writes cover letter for each selected role |
-| 6 | **Review** — opens output folders in Explorer; press Enter when ready |
-| 7 | **Confirm** — shows exactly which roles get auto-emailed vs manual |
-| 8 | **Send** — emails sent via Outlook with tailored CV + cover letter attached |
-| 9 | **Manual links** — external apply URLs + document paths for non-email roles |
+Build the frontend for production:
+```powershell
+cd frontend && npm run build
+```
+
+### CLI
+
+```powershell
+cd backend
+..\.venv\Scripts\python main.py
+```
+
+The CLI walks through nine steps: filter selection → scrape → display → select → AI processing → review → confirm → send emails → manual apply links.
 
 ---
 
@@ -117,6 +144,7 @@ The tool walks you through nine steps:
 - Windows (Outlook COM required for email sending)
 - Microsoft Outlook installed and configured with a send-capable account
 - Python 3.10+
+- Node.js 18+ (for frontend)
 - A valid HKUST student/staff session cookie
 - A Dashscope API key
 
@@ -124,6 +152,6 @@ The tool walks you through nine steps:
 
 ## Notes
 
-- The `PHPSESSID` session cookie expires periodically. If scraping returns zero results or redirects to login, grab a fresh cookie from your browser.
-- Output documents are saved as DOCX. Open in Word and export to PDF manually if needed, or set `save_pdf=True` in `document/letter_builder.py` (requires `docx2pdf`).
-- The CSV state file (`hkust_jobs.csv`) persists across runs. Delete it to start fresh.
+- The `PHPSESSID` cookie expires periodically. If scraping returns zero results, grab a fresh cookie from your browser, or update it directly on the **Settings** page of the web UI.
+- Output documents are saved as DOCX to `backend/output/`. Open in Word to export to PDF if needed.
+- The CSV state file (`backend/hkust_jobs.csv`) persists across runs. Delete it to start fresh.

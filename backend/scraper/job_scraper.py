@@ -149,8 +149,11 @@ def _parse_detail_page(html: str) -> dict:
     return {"details": details, "email": email, "website": website}
 
 
-def scrape_jobs(filters: dict, pages: list[int]) -> list[dict]:
-    """Scrape the given page numbers with active filters, return job dicts."""
+def scrape_jobs(filters: dict, pages: list[int], progress_cb=None) -> list[dict]:
+    """Scrape the given page numbers with active filters, return job dicts.
+
+    progress_cb: optional callable(event: dict) called from the scraping thread.
+    """
     session = _build_session()
     all_jobs = []
     seen_urls: set[str] = set()
@@ -158,15 +161,27 @@ def scrape_jobs(filters: dict, pages: list[int]) -> list[dict]:
     for page_index, page_num in enumerate(pages, 1):
         url = _build_url(filters, page_num)
         print(f"  [{page_index}/{len(pages)}] page {page_num}...")
+        if progress_cb:
+            progress_cb({
+                "type": "progress",
+                "page": page_num,
+                "page_index": page_index,
+                "total_pages": len(pages),
+                "message": f"Scraping page {page_num}/{len(pages)}...",
+            })
 
         r = _safe_get(session, url)
         if not r:
             print(f"    Skipping page {page_num} (fetch failed).")
+            if progress_cb:
+                progress_cb({"type": "warning", "message": f"Page {page_num} failed, skipping."})
             continue
 
         items = _parse_list_page(r.text)
         if not items:
             print(f"    No listings found — possibly past the last page.")
+            if progress_cb:
+                progress_cb({"type": "info", "message": "No more listings — stopping early."})
             break
 
         for item in items:
@@ -182,5 +197,12 @@ def scrape_jobs(filters: dict, pages: list[int]) -> list[dict]:
 
             detail = _parse_detail_page(dr.text)
             all_jobs.append({**item, **detail})
+            if progress_cb:
+                progress_cb({
+                    "type": "job_found",
+                    "count": len(all_jobs),
+                    "company": item.get("company", ""),
+                    "job_title": item.get("job_title", ""),
+                })
 
     return all_jobs

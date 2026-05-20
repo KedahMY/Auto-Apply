@@ -1,3 +1,21 @@
+# ── Monorepo-specific ────────────────────────────────────────────────────────
+
+# Backend runtime / user data
+backend/.env
+backend/config.py
+backend/data/
+backend/output/
+backend/hkust_jobs.csv
+backend/data/settings.json
+
+# Frontend build output and dependencies
+frontend/dist/
+frontend/node_modules/
+
+# Playwright MCP session files
+.playwright-mcp/
+
+# ── Python ────────────────────────────────────────────────────────────────────
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
