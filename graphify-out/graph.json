@@ -1,0 +1,5716 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "web_interface",
+        "label": "FastAPI Web Interface",
+        "nodes": [
+          "api_server",
+          "config",
+          "job_scraper",
+          "job_store",
+          "cv_tailor",
+          "cover_letter_gen",
+          "cv_builder",
+          "letter_builder",
+          "outlook_sender"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "backend/api/server.py"
+      },
+      {
+        "id": "cli_interface",
+        "label": "CLI Interface",
+        "nodes": [
+          "main_cli",
+          "config",
+          "job_scraper",
+          "job_store",
+          "cv_tailor",
+          "cover_letter_gen",
+          "cv_builder",
+          "letter_builder",
+          "outlook_sender"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "backend/main.py"
+      },
+      {
+        "id": "frontend_routing_architecture",
+        "label": "Frontend Navigation and Routing",
+        "nodes": [
+          "react_app",
+          "react_dashboard",
+          "react_scrape",
+          "react_jobs",
+          "react_settings"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.75,
+        "source_file": "frontend/src/App.jsx"
+      },
+      {
+        "id": "frontend_tooling_stack",
+        "label": "Frontend Tooling Configs",
+        "nodes": [
+          "config_vite",
+          "config_tailwind",
+          "config_postcss"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.95,
+        "source_file": "frontend/vite.config.js"
+      },
+      {
+        "id": "frontend_data_fetching",
+        "label": "Client APIs used by pages",
+        "nodes": [
+          "js_api_client",
+          "react_dashboard",
+          "react_jobs",
+          "react_scrape",
+          "react_settings"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "frontend/src/api/client.js"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "config.py",
+      "file_type": "code",
+      "source_file": "backend/config.py",
+      "source_location": "L1",
+      "id": "backend_config_py",
+      "community": 20,
+      "norm_label": "config.py"
+    },
+    {
+      "label": "main.py",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L1",
+      "id": "backend_main_py",
+      "community": 3,
+      "norm_label": "main.py"
+    },
+    {
+      "label": "_check_config()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L29",
+      "id": "backend_main_check_config",
+      "community": 3,
+      "norm_label": "_check_config()"
+    },
+    {
+      "label": "_pick_multi()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L50",
+      "id": "backend_main_pick_multi",
+      "community": 3,
+      "norm_label": "_pick_multi()"
+    },
+    {
+      "label": "_pick_filters()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L74",
+      "id": "backend_main_pick_filters",
+      "community": 3,
+      "norm_label": "_pick_filters()"
+    },
+    {
+      "label": "_summarise_filters()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L99",
+      "id": "backend_main_summarise_filters",
+      "community": 3,
+      "norm_label": "_summarise_filters()"
+    },
+    {
+      "label": "_prompt_pages()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L132",
+      "id": "backend_main_prompt_pages",
+      "community": 3,
+      "norm_label": "_prompt_pages()"
+    },
+    {
+      "label": "_display_jobs()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L151",
+      "id": "backend_main_display_jobs",
+      "community": 3,
+      "norm_label": "_display_jobs()"
+    },
+    {
+      "label": "_prompt_job_selection()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L173",
+      "id": "backend_main_prompt_job_selection",
+      "community": 3,
+      "norm_label": "_prompt_job_selection()"
+    },
+    {
+      "label": "_process_jobs()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L208",
+      "id": "backend_main_process_jobs",
+      "community": 3,
+      "norm_label": "_process_jobs()"
+    },
+    {
+      "label": "_review_documents()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L235",
+      "id": "backend_main_review_documents",
+      "community": 3,
+      "norm_label": "_review_documents()"
+    },
+    {
+      "label": "_confirm_send()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L259",
+      "id": "backend_main_confirm_send",
+      "community": 3,
+      "norm_label": "_confirm_send()"
+    },
+    {
+      "label": "_send_emails()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L294",
+      "id": "backend_main_send_emails",
+      "community": 3,
+      "norm_label": "_send_emails()"
+    },
+    {
+      "label": "_show_manual_links()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L324",
+      "id": "backend_main_show_manual_links",
+      "community": 3,
+      "norm_label": "_show_manual_links()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": "L345",
+      "id": "backend_main_main",
+      "community": 3,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Auto-Apply \u2014 main entry point.  Run:  python main.py  (use the .venv interpreter",
+      "file_type": "rationale",
+      "source_file": "backend/main.py",
+      "source_location": "L1",
+      "id": "backend_main_rationale_1",
+      "community": 3,
+      "norm_label": "auto-apply \u2014 main entry point.  run:  python main.py  (use the .venv interpreter"
+    },
+    {
+      "label": "Show a numbered list and return selected option values. Enter = skip.",
+      "file_type": "rationale",
+      "source_file": "backend/main.py",
+      "source_location": "L51",
+      "id": "backend_main_rationale_51",
+      "community": 3,
+      "norm_label": "show a numbered list and return selected option values. enter = skip."
+    },
+    {
+      "label": "Return 0-based indices, or None if user wants to go back to filters.",
+      "file_type": "rationale",
+      "source_file": "backend/main.py",
+      "source_location": "L174",
+      "id": "backend_main_rationale_174",
+      "community": 3,
+      "norm_label": "return 0-based indices, or none if user wants to go back to filters."
+    },
+    {
+      "label": "Generate tailored CV + cover letter for each job. Returns enriched job dicts.",
+      "file_type": "rationale",
+      "source_file": "backend/main.py",
+      "source_location": "L209",
+      "id": "backend_main_rationale_209",
+      "community": 3,
+      "norm_label": "generate tailored cv + cover letter for each job. returns enriched job dicts."
+    },
+    {
+      "label": "cover_letter_gen.py",
+      "file_type": "code",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L1",
+      "id": "backend_ai_cover_letter_gen_py",
+      "community": 15,
+      "norm_label": "cover_letter_gen.py"
+    },
+    {
+      "label": "_get_client()",
+      "file_type": "code",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L7",
+      "id": "ai_cover_letter_gen_get_client",
+      "community": 15,
+      "norm_label": "_get_client()"
+    },
+    {
+      "label": "_call_api()",
+      "file_type": "code",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L39",
+      "id": "ai_cover_letter_gen_call_api",
+      "community": 15,
+      "norm_label": "_call_api()"
+    },
+    {
+      "label": "generate_cover_letter()",
+      "file_type": "code",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L47",
+      "id": "ai_cover_letter_gen_generate_cover_letter",
+      "community": 15,
+      "norm_label": "generate_cover_letter()"
+    },
+    {
+      "label": "Return the body of a personalised cover letter, enforced to \u2264250 words.",
+      "file_type": "rationale",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L48",
+      "id": "ai_cover_letter_gen_rationale_48",
+      "community": 15,
+      "norm_label": "return the body of a personalised cover letter, enforced to \u2264250 words."
+    },
+    {
+      "label": "cv_tailor.py",
+      "file_type": "code",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L1",
+      "id": "backend_ai_cv_tailor_py",
+      "community": 5,
+      "norm_label": "cv_tailor.py"
+    },
+    {
+      "label": "_get_client()",
+      "file_type": "code",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L9",
+      "id": "ai_cv_tailor_get_client",
+      "community": 5,
+      "norm_label": "_get_client()"
+    },
+    {
+      "label": "tailor_cv()",
+      "file_type": "code",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L36",
+      "id": "ai_cv_tailor_tailor_cv",
+      "community": 5,
+      "norm_label": "tailor_cv()"
+    },
+    {
+      "label": "Return a dict mapping paragraph index (str) \u2192 rewritten text for bullet paragrap",
+      "file_type": "rationale",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L37",
+      "id": "ai_cv_tailor_rationale_37",
+      "community": 5,
+      "norm_label": "return a dict mapping paragraph index (str) \u2192 rewritten text for bullet paragrap"
+    },
+    {
+      "label": "email_gen.py",
+      "file_type": "code",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L1",
+      "id": "backend_ai_email_gen_py",
+      "community": 1,
+      "norm_label": "email_gen.py"
+    },
+    {
+      "label": "_get_client()",
+      "file_type": "code",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L8",
+      "id": "ai_email_gen_get_client",
+      "community": 1,
+      "norm_label": "_get_client()"
+    },
+    {
+      "label": "generate_email()",
+      "file_type": "code",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L36",
+      "id": "ai_email_gen_generate_email",
+      "community": 1,
+      "norm_label": "generate_email()"
+    },
+    {
+      "label": "Return (subject, body) for a personalised application email.     On any error or",
+      "file_type": "rationale",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L37",
+      "id": "ai_email_gen_rationale_37",
+      "community": 1,
+      "norm_label": "return (subject, body) for a personalised application email.     on any error or"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "backend/ai/__init__.py",
+      "source_location": "L1",
+      "id": "backend_ai_init_py",
+      "community": 21,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "backend/api/models.py",
+      "source_location": "L1",
+      "id": "backend_api_models_py",
+      "community": 11,
+      "norm_label": "models.py"
+    },
+    {
+      "label": "JobResponse",
+      "file_type": "code",
+      "source_file": "backend/api/models.py",
+      "source_location": "L5",
+      "id": "api_models_jobresponse",
+      "community": 11,
+      "norm_label": "jobresponse"
+    },
+    {
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "basemodel",
+      "community": 11,
+      "norm_label": "basemodel"
+    },
+    {
+      "label": "ScrapeRequest",
+      "file_type": "code",
+      "source_file": "backend/api/models.py",
+      "source_location": "L22",
+      "id": "api_models_scraperequest",
+      "community": 11,
+      "norm_label": "scraperequest"
+    },
+    {
+      "label": "ProcessRequest",
+      "file_type": "code",
+      "source_file": "backend/api/models.py",
+      "source_location": "L27",
+      "id": "api_models_processrequest",
+      "community": 11,
+      "norm_label": "processrequest"
+    },
+    {
+      "label": "SendRequest",
+      "file_type": "code",
+      "source_file": "backend/api/models.py",
+      "source_location": "L31",
+      "id": "api_models_sendrequest",
+      "community": 11,
+      "norm_label": "sendrequest"
+    },
+    {
+      "label": "ApplyPatchRequest",
+      "file_type": "code",
+      "source_file": "backend/api/models.py",
+      "source_location": "L35",
+      "id": "api_models_applypatchrequest",
+      "community": 11,
+      "norm_label": "applypatchrequest"
+    },
+    {
+      "label": "ConfigUpdate",
+      "file_type": "code",
+      "source_file": "backend/api/models.py",
+      "source_location": "L39",
+      "id": "api_models_configupdate",
+      "community": 11,
+      "norm_label": "configupdate"
+    },
+    {
+      "label": "server.py",
+      "file_type": "code",
+      "source_file": "backend/api/server.py",
+      "source_location": "L1",
+      "id": "backend_api_server_py",
+      "community": 16,
+      "norm_label": "server.py"
+    },
+    {
+      "label": "lifespan()",
+      "file_type": "code",
+      "source_file": "backend/api/server.py",
+      "source_location": "L13",
+      "id": "api_server_lifespan",
+      "community": 16,
+      "norm_label": "lifespan()"
+    },
+    {
+      "label": "serve_spa()",
+      "file_type": "code",
+      "source_file": "backend/api/server.py",
+      "source_location": "L39",
+      "id": "api_server_serve_spa",
+      "community": 16,
+      "norm_label": "serve_spa()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "backend/api/__init__.py",
+      "source_location": "L1",
+      "id": "backend_api_init_py",
+      "community": 22,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "config_routes.py",
+      "file_type": "code",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L1",
+      "id": "backend_api_routes_config_routes_py",
+      "community": 12,
+      "norm_label": "config_routes.py"
+    },
+    {
+      "label": "_load_settings()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L15",
+      "id": "routes_config_routes_load_settings",
+      "community": 12,
+      "norm_label": "_load_settings()"
+    },
+    {
+      "label": "_save_settings()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L22",
+      "id": "routes_config_routes_save_settings",
+      "community": 12,
+      "norm_label": "_save_settings()"
+    },
+    {
+      "label": "_update_env_key()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L28",
+      "id": "routes_config_routes_update_env_key",
+      "community": 12,
+      "norm_label": "_update_env_key()"
+    },
+    {
+      "label": "get_config()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L49",
+      "id": "routes_config_routes_get_config",
+      "community": 12,
+      "norm_label": "get_config()"
+    },
+    {
+      "label": "update_config()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L66",
+      "id": "routes_config_routes_update_config",
+      "community": 12,
+      "norm_label": "update_config()"
+    },
+    {
+      "label": "upload_cv()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L102",
+      "id": "routes_config_routes_upload_cv",
+      "community": 12,
+      "norm_label": "upload_cv()"
+    },
+    {
+      "label": "upload_datalake()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L112",
+      "id": "routes_config_routes_upload_datalake",
+      "community": 12,
+      "norm_label": "upload_datalake()"
+    },
+    {
+      "label": "email.py",
+      "file_type": "code",
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L1",
+      "id": "backend_api_routes_email_py",
+      "community": 1,
+      "norm_label": "email.py"
+    },
+    {
+      "label": "send_emails()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L15",
+      "id": "routes_email_send_emails",
+      "community": 1,
+      "norm_label": "send_emails()"
+    },
+    {
+      "label": "jobs.py",
+      "file_type": "code",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L1",
+      "id": "backend_api_routes_jobs_py",
+      "community": 10,
+      "norm_label": "jobs.py"
+    },
+    {
+      "label": "_df_to_jobs()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L18",
+      "id": "routes_jobs_df_to_jobs",
+      "community": 10,
+      "norm_label": "_df_to_jobs()"
+    },
+    {
+      "label": "get_jobs()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L41",
+      "id": "routes_jobs_get_jobs",
+      "community": 10,
+      "norm_label": "get_jobs()"
+    },
+    {
+      "label": "delete_all_jobs()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L47",
+      "id": "routes_jobs_delete_all_jobs",
+      "community": 10,
+      "norm_label": "delete_all_jobs()"
+    },
+    {
+      "label": "delete_job()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L53",
+      "id": "routes_jobs_delete_job",
+      "community": 10,
+      "norm_label": "delete_job()"
+    },
+    {
+      "label": "mark_job_applied()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L62",
+      "id": "routes_jobs_mark_job_applied",
+      "community": 10,
+      "norm_label": "mark_job_applied()"
+    },
+    {
+      "label": "scrape_jobs_stream()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L71",
+      "id": "routes_jobs_scrape_jobs_stream",
+      "community": 10,
+      "norm_label": "scrape_jobs_stream()"
+    },
+    {
+      "label": "process.py",
+      "file_type": "code",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L1",
+      "id": "backend_api_routes_process_py",
+      "community": 1,
+      "norm_label": "process.py"
+    },
+    {
+      "label": "process_jobs_stream()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L23",
+      "id": "routes_process_process_jobs_stream",
+      "community": 1,
+      "norm_label": "process_jobs_stream()"
+    },
+    {
+      "label": "download_cv()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L101",
+      "id": "routes_process_download_cv",
+      "community": 1,
+      "norm_label": "download_cv()"
+    },
+    {
+      "label": "download_letter()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L110",
+      "id": "routes_process_download_letter",
+      "community": 1,
+      "norm_label": "download_letter()"
+    },
+    {
+      "label": "_docx_to_pdf()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L118",
+      "id": "routes_process_docx_to_pdf",
+      "community": 1,
+      "norm_label": "_docx_to_pdf()"
+    },
+    {
+      "label": "preview_cv()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L151",
+      "id": "routes_process_preview_cv",
+      "community": 1,
+      "norm_label": "preview_cv()"
+    },
+    {
+      "label": "preview_letter()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L163",
+      "id": "routes_process_preview_letter",
+      "community": 1,
+      "norm_label": "preview_letter()"
+    },
+    {
+      "label": "Convert a DOCX to PDF using Word COM (pywin32). Returns the PDF path.",
+      "file_type": "rationale",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L119",
+      "id": "routes_process_rationale_119",
+      "community": 1,
+      "norm_label": "convert a docx to pdf using word com (pywin32). returns the pdf path."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "backend/api/routes/__init__.py",
+      "source_location": "L1",
+      "id": "backend_api_routes_init_py",
+      "community": 23,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "cv_builder.py",
+      "file_type": "code",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L1",
+      "id": "backend_document_cv_builder_py",
+      "community": 7,
+      "norm_label": "cv_builder.py"
+    },
+    {
+      "label": "_apply_replacement()",
+      "file_type": "code",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L9",
+      "id": "document_cv_builder_apply_replacement",
+      "community": 7,
+      "norm_label": "_apply_replacement()"
+    },
+    {
+      "label": "build_cv_docx()",
+      "file_type": "code",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L30",
+      "id": "document_cv_builder_build_cv_docx",
+      "community": 7,
+      "norm_label": "build_cv_docx()"
+    },
+    {
+      "label": "Replace the text content of a paragraph while preserving all paragraph-level",
+      "file_type": "rationale",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L10",
+      "id": "document_cv_builder_rationale_10",
+      "community": 7,
+      "norm_label": "replace the text content of a paragraph while preserving all paragraph-level"
+    },
+    {
+      "label": "Copy the original CV DOCX and surgically apply paragraph-level text replacements",
+      "file_type": "rationale",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L31",
+      "id": "document_cv_builder_rationale_31",
+      "community": 7,
+      "norm_label": "copy the original cv docx and surgically apply paragraph-level text replacements"
+    },
+    {
+      "label": "letter_builder.py",
+      "file_type": "code",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L1",
+      "id": "backend_document_letter_builder_py",
+      "community": 7,
+      "norm_label": "letter_builder.py"
+    },
+    {
+      "label": "_add_para()",
+      "file_type": "code",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L13",
+      "id": "document_letter_builder_add_para",
+      "community": 7,
+      "norm_label": "_add_para()"
+    },
+    {
+      "label": "_set_margins()",
+      "file_type": "code",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L26",
+      "id": "document_letter_builder_set_margins",
+      "community": 7,
+      "norm_label": "_set_margins()"
+    },
+    {
+      "label": "_clean_body()",
+      "file_type": "code",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L32",
+      "id": "document_letter_builder_clean_body",
+      "community": 7,
+      "norm_label": "_clean_body()"
+    },
+    {
+      "label": "build_letter_docx()",
+      "file_type": "code",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L43",
+      "id": "document_letter_builder_build_letter_docx",
+      "community": 7,
+      "norm_label": "build_letter_docx()"
+    },
+    {
+      "label": "_convert_to_pdf()",
+      "file_type": "code",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L94",
+      "id": "document_letter_builder_convert_to_pdf",
+      "community": 7,
+      "norm_label": "_convert_to_pdf()"
+    },
+    {
+      "label": "Build a cover letter DOCX (and optionally PDF) and return the DOCX path.",
+      "file_type": "rationale",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L44",
+      "id": "document_letter_builder_rationale_44",
+      "community": 7,
+      "norm_label": "build a cover letter docx (and optionally pdf) and return the docx path."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "backend/document/__init__.py",
+      "source_location": "L1",
+      "id": "backend_document_init_py",
+      "community": 24,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "outlook_sender.py",
+      "file_type": "code",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L1",
+      "id": "backend_mailer_outlook_sender_py",
+      "community": 13,
+      "norm_label": "outlook_sender.py"
+    },
+    {
+      "label": "is_available()",
+      "file_type": "code",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L15",
+      "id": "mailer_outlook_sender_is_available",
+      "community": 13,
+      "norm_label": "is_available()"
+    },
+    {
+      "label": "_dispatch_outlook()",
+      "file_type": "code",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L19",
+      "id": "mailer_outlook_sender_dispatch_outlook",
+      "community": 13,
+      "norm_label": "_dispatch_outlook()"
+    },
+    {
+      "label": "_default_body()",
+      "file_type": "code",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L39",
+      "id": "mailer_outlook_sender_default_body",
+      "community": 13,
+      "norm_label": "_default_body()"
+    },
+    {
+      "label": "send_application()",
+      "file_type": "code",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L50",
+      "id": "mailer_outlook_sender_send_application",
+      "community": 13,
+      "norm_label": "send_application()"
+    },
+    {
+      "label": "Connect to a running Outlook instance, retrying on RPC_E_CALL_REJECTED.",
+      "file_type": "rationale",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L20",
+      "id": "mailer_outlook_sender_rationale_20",
+      "community": 13,
+      "norm_label": "connect to a running outlook instance, retrying on rpc_e_call_rejected."
+    },
+    {
+      "label": "Send a job application email via Outlook COM.     `subject` / `body` are the AI-",
+      "file_type": "rationale",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L58",
+      "id": "mailer_outlook_sender_rationale_58",
+      "community": 13,
+      "norm_label": "send a job application email via outlook com.     `subject` / `body` are the ai-"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "backend/mailer/__init__.py",
+      "source_location": "L1",
+      "id": "backend_mailer_init_py",
+      "community": 25,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "filter_options.py",
+      "file_type": "code",
+      "source_file": "backend/scraper/filter_options.py",
+      "source_location": "L1",
+      "id": "backend_scraper_filter_options_py",
+      "community": 17,
+      "norm_label": "filter_options.py"
+    },
+    {
+      "label": "All HKUST job board filter options, scraped from the live site. Each dict maps d",
+      "file_type": "rationale",
+      "source_file": "backend/scraper/filter_options.py",
+      "source_location": "L1",
+      "id": "scraper_filter_options_rationale_1",
+      "community": 17,
+      "norm_label": "all hkust job board filter options, scraped from the live site. each dict maps d"
+    },
+    {
+      "label": "job_scraper.py",
+      "file_type": "code",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L1",
+      "id": "backend_scraper_job_scraper_py",
+      "community": 9,
+      "norm_label": "job_scraper.py"
+    },
+    {
+      "label": "_build_session()",
+      "file_type": "code",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L22",
+      "id": "scraper_job_scraper_build_session",
+      "community": 9,
+      "norm_label": "_build_session()"
+    },
+    {
+      "label": "_build_url()",
+      "file_type": "code",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L28",
+      "id": "scraper_job_scraper_build_url",
+      "community": 9,
+      "norm_label": "_build_url()"
+    },
+    {
+      "label": "_safe_get()",
+      "file_type": "code",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L52",
+      "id": "scraper_job_scraper_safe_get",
+      "community": 9,
+      "norm_label": "_safe_get()"
+    },
+    {
+      "label": "_parse_list_page()",
+      "file_type": "code",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L66",
+      "id": "scraper_job_scraper_parse_list_page",
+      "community": 9,
+      "norm_label": "_parse_list_page()"
+    },
+    {
+      "label": "_parse_detail_page()",
+      "file_type": "code",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L123",
+      "id": "scraper_job_scraper_parse_detail_page",
+      "community": 9,
+      "norm_label": "_parse_detail_page()"
+    },
+    {
+      "label": "scrape_jobs()",
+      "file_type": "code",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L152",
+      "id": "scraper_job_scraper_scrape_jobs",
+      "community": 9,
+      "norm_label": "scrape_jobs()"
+    },
+    {
+      "label": "Build a filter-aware paginated URL.      filters keys match the form param names",
+      "file_type": "rationale",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L29",
+      "id": "scraper_job_scraper_rationale_29",
+      "community": 9,
+      "norm_label": "build a filter-aware paginated url.      filters keys match the form param names"
+    },
+    {
+      "label": "Scrape the given page numbers with active filters, return job dicts.      progre",
+      "file_type": "rationale",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L153",
+      "id": "scraper_job_scraper_rationale_153",
+      "community": 9,
+      "norm_label": "scrape the given page numbers with active filters, return job dicts.      progre"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "backend/scraper/__init__.py",
+      "source_location": "L1",
+      "id": "backend_scraper_init_py",
+      "community": 26,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "job_store.py",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L1",
+      "id": "backend_state_job_store_py",
+      "community": 8,
+      "norm_label": "job_store.py"
+    },
+    {
+      "label": "load_jobs()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L12",
+      "id": "state_job_store_load_jobs",
+      "community": 8,
+      "norm_label": "load_jobs()"
+    },
+    {
+      "label": "save_jobs()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L32",
+      "id": "state_job_store_save_jobs",
+      "community": 8,
+      "norm_label": "save_jobs()"
+    },
+    {
+      "label": "existing_keys()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L36",
+      "id": "state_job_store_existing_keys",
+      "community": 8,
+      "norm_label": "existing_keys()"
+    },
+    {
+      "label": "is_duplicate()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L43",
+      "id": "state_job_store_is_duplicate",
+      "community": 8,
+      "norm_label": "is_duplicate()"
+    },
+    {
+      "label": "append_jobs()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L48",
+      "id": "state_job_store_append_jobs",
+      "community": 8,
+      "norm_label": "append_jobs()"
+    },
+    {
+      "label": "mark_applied()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L65",
+      "id": "state_job_store_mark_applied",
+      "community": 8,
+      "norm_label": "mark_applied()"
+    },
+    {
+      "label": "mark_letter_done()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L74",
+      "id": "state_job_store_mark_letter_done",
+      "community": 8,
+      "norm_label": "mark_letter_done()"
+    },
+    {
+      "label": "delete_job()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L85",
+      "id": "state_job_store_delete_job",
+      "community": 8,
+      "norm_label": "delete_job()"
+    },
+    {
+      "label": "delete_all_jobs()",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L91",
+      "id": "state_job_store_delete_all_jobs",
+      "community": 8,
+      "norm_label": "delete_all_jobs()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "backend/state/__init__.py",
+      "source_location": "L1",
+      "id": "backend_state_init_py",
+      "community": 27,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "helpers.py",
+      "file_type": "code",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L1",
+      "id": "backend_utils_helpers_py",
+      "community": 1,
+      "norm_label": "helpers.py"
+    },
+    {
+      "label": "sanitize_filename()",
+      "file_type": "code",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L9",
+      "id": "utils_helpers_sanitize_filename",
+      "community": 7,
+      "norm_label": "sanitize_filename()"
+    },
+    {
+      "label": "extract_docx_text()",
+      "file_type": "code",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L15",
+      "id": "utils_helpers_extract_docx_text",
+      "community": 1,
+      "norm_label": "extract_docx_text()"
+    },
+    {
+      "label": "read_text_file()",
+      "file_type": "code",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L28",
+      "id": "utils_helpers_read_text_file",
+      "community": 1,
+      "norm_label": "read_text_file()"
+    },
+    {
+      "label": "clean_text()",
+      "file_type": "code",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L36",
+      "id": "utils_helpers_clean_text",
+      "community": 9,
+      "norm_label": "clean_text()"
+    },
+    {
+      "label": "parse_page_input()",
+      "file_type": "code",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L42",
+      "id": "utils_helpers_parse_page_input",
+      "community": 10,
+      "norm_label": "parse_page_input()"
+    },
+    {
+      "label": "Return the full text of a DOCX file with basic structure preserved.",
+      "file_type": "rationale",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L16",
+      "id": "utils_helpers_rationale_16",
+      "community": 1,
+      "norm_label": "return the full text of a docx file with basic structure preserved."
+    },
+    {
+      "label": "Read a plain-text or markdown file and return its contents.",
+      "file_type": "rationale",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L29",
+      "id": "utils_helpers_rationale_29",
+      "community": 1,
+      "norm_label": "read a plain-text or markdown file and return its contents."
+    },
+    {
+      "label": "Parse a page string like '3' or '1-5' into a list of page numbers.",
+      "file_type": "rationale",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L43",
+      "id": "utils_helpers_rationale_43",
+      "community": 10,
+      "norm_label": "parse a page string like '3' or '1-5' into a list of page numbers."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "backend/utils/__init__.py",
+      "source_location": "L1",
+      "id": "backend_utils_init_py",
+      "community": 28,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "postcss.config.js",
+      "file_type": "code",
+      "source_file": "frontend/postcss.config.js",
+      "source_location": "L1",
+      "id": "frontend_postcss_config_js",
+      "community": 29,
+      "norm_label": "postcss.config.js"
+    },
+    {
+      "label": "tailwind.config.js",
+      "file_type": "code",
+      "source_file": "frontend/tailwind.config.js",
+      "source_location": "L1",
+      "id": "frontend_tailwind_config_js",
+      "community": 30,
+      "norm_label": "tailwind.config.js"
+    },
+    {
+      "label": "vite.config.js",
+      "file_type": "code",
+      "source_file": "frontend/vite.config.js",
+      "source_location": "L1",
+      "id": "frontend_vite_config_js",
+      "community": 31,
+      "norm_label": "vite.config.js"
+    },
+    {
+      "label": "App.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_app_jsx",
+      "community": 0,
+      "norm_label": "app.jsx"
+    },
+    {
+      "label": "useScrollToTop()",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L8",
+      "id": "src_app_usescrolltotop",
+      "community": 0,
+      "norm_label": "usescrolltotop()"
+    },
+    {
+      "label": "nav",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L13",
+      "id": "src_app_nav",
+      "community": 0,
+      "norm_label": "nav"
+    },
+    {
+      "label": "App()",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L20",
+      "id": "src_app_app",
+      "community": 0,
+      "norm_label": "app()"
+    },
+    {
+      "label": "main.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_main_jsx",
+      "community": 0,
+      "norm_label": "main.jsx"
+    },
+    {
+      "label": "client.js",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L1",
+      "id": "frontend_src_api_client_js",
+      "community": 0,
+      "norm_label": "client.js"
+    },
+    {
+      "label": "req()",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L3",
+      "id": "api_client_req",
+      "community": 0,
+      "norm_label": "req()"
+    },
+    {
+      "label": "api",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L17",
+      "id": "api_client_api",
+      "community": 0,
+      "norm_label": "api"
+    },
+    {
+      "label": "scrapeSSE()",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L35",
+      "id": "api_client_scrapesse",
+      "community": 0,
+      "norm_label": "scrapesse()"
+    },
+    {
+      "label": "processSSE()",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L72",
+      "id": "api_client_processsse",
+      "community": 0,
+      "norm_label": "processsse()"
+    },
+    {
+      "label": "cvUrl()",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L109",
+      "id": "api_client_cvurl",
+      "community": 0,
+      "norm_label": "cvurl()"
+    },
+    {
+      "label": "letterUrl()",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L110",
+      "id": "api_client_letterurl",
+      "community": 0,
+      "norm_label": "letterurl()"
+    },
+    {
+      "label": "cvPreviewUrl()",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L111",
+      "id": "api_client_cvpreviewurl",
+      "community": 0,
+      "norm_label": "cvpreviewurl()"
+    },
+    {
+      "label": "letterPreviewUrl()",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L112",
+      "id": "api_client_letterpreviewurl",
+      "community": 0,
+      "norm_label": "letterpreviewurl()"
+    },
+    {
+      "label": "FilterPanel.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/FilterPanel.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_filterpanel_jsx",
+      "community": 0,
+      "norm_label": "filterpanel.jsx"
+    },
+    {
+      "label": "FILTER_GROUPS",
+      "file_type": "code",
+      "source_file": "frontend/src/components/FilterPanel.jsx",
+      "source_location": "L1",
+      "id": "components_filterpanel_filter_groups",
+      "community": 0,
+      "norm_label": "filter_groups"
+    },
+    {
+      "label": "FilterPanel()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/FilterPanel.jsx",
+      "source_location": "L65",
+      "id": "components_filterpanel_filterpanel",
+      "community": 0,
+      "norm_label": "filterpanel()"
+    },
+    {
+      "label": "JobTable.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/JobTable.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_jobtable_jsx",
+      "community": 0,
+      "norm_label": "jobtable.jsx"
+    },
+    {
+      "label": "JobTable()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/JobTable.jsx",
+      "source_location": "L3",
+      "id": "components_jobtable_jobtable",
+      "community": 0,
+      "norm_label": "jobtable()"
+    },
+    {
+      "label": "ProgressLog.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ProgressLog.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_progresslog_jsx",
+      "community": 0,
+      "norm_label": "progresslog.jsx"
+    },
+    {
+      "label": "ProgressLog()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ProgressLog.jsx",
+      "source_location": "L3",
+      "id": "components_progresslog_progresslog",
+      "community": 0,
+      "norm_label": "progresslog()"
+    },
+    {
+      "label": "StatusBadge.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/StatusBadge.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_statusbadge_jsx",
+      "community": 18,
+      "norm_label": "statusbadge.jsx"
+    },
+    {
+      "label": "StatusBadge()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/StatusBadge.jsx",
+      "source_location": "L1",
+      "id": "components_statusbadge_statusbadge",
+      "community": 18,
+      "norm_label": "statusbadge()"
+    },
+    {
+      "label": "Dashboard.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_dashboard_jsx",
+      "community": 0,
+      "norm_label": "dashboard.jsx"
+    },
+    {
+      "label": "StatCard()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L4",
+      "id": "pages_dashboard_statcard",
+      "community": 0,
+      "norm_label": "statcard()"
+    },
+    {
+      "label": "Dashboard()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L13",
+      "id": "pages_dashboard_dashboard",
+      "community": 0,
+      "norm_label": "dashboard()"
+    },
+    {
+      "label": "Jobs.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_jobs_jsx",
+      "community": 0,
+      "norm_label": "jobs.jsx"
+    },
+    {
+      "label": "STEP_LABELS",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L6",
+      "id": "pages_jobs_step_labels",
+      "community": 0,
+      "norm_label": "step_labels"
+    },
+    {
+      "label": "Jobs()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L13",
+      "id": "pages_jobs_jobs",
+      "community": 0,
+      "norm_label": "jobs()"
+    },
+    {
+      "label": "Scrape.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_scrape_jsx",
+      "community": 0,
+      "norm_label": "scrape.jsx"
+    },
+    {
+      "label": "Scrape()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": "L7",
+      "id": "pages_scrape_scrape",
+      "community": 0,
+      "norm_label": "scrape()"
+    },
+    {
+      "label": "Settings.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_settings_jsx",
+      "community": 0,
+      "norm_label": "settings.jsx"
+    },
+    {
+      "label": "Section()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L4",
+      "id": "pages_settings_section",
+      "community": 0,
+      "norm_label": "section()"
+    },
+    {
+      "label": "Field()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L13",
+      "id": "pages_settings_field",
+      "community": 0,
+      "norm_label": "field()"
+    },
+    {
+      "label": "Input()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L23",
+      "id": "pages_settings_input",
+      "community": 3,
+      "norm_label": "input()"
+    },
+    {
+      "label": "Settings()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L35",
+      "id": "pages_settings_settings",
+      "community": 0,
+      "norm_label": "settings()"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "id": "claude_md",
+      "community": 4,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "id": "auto_apply_claude_claude_md",
+      "community": 4,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "Frontend testing with Playwright MCP",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L5",
+      "id": "auto_apply_claude_frontend_testing_with_playwright_mcp",
+      "community": 4,
+      "norm_label": "frontend testing with playwright mcp"
+    },
+    {
+      "label": "code:block1 (# The server is already running \u2014 use the mcp__playwright__ )",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L9",
+      "id": "auto_apply_claude_codeblock_1",
+      "community": 4,
+      "norm_label": "code:block1 (# the server is already running \u2014 use the mcp__playwright__ )"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L25",
+      "id": "auto_apply_claude_graphify",
+      "community": 4,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "Monorepo structure",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L35",
+      "id": "auto_apply_claude_monorepo_structure",
+      "community": 4,
+      "norm_label": "monorepo structure"
+    },
+    {
+      "label": "code:block2 (Auto-Apply/)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L37",
+      "id": "auto_apply_claude_codeblock_2",
+      "community": 4,
+      "norm_label": "code:block2 (auto-apply/)"
+    },
+    {
+      "label": "Running the project",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L44",
+      "id": "auto_apply_claude_running_the_project",
+      "community": 4,
+      "norm_label": "running the project"
+    },
+    {
+      "label": "code:powershell (# First time \u2014 create venv and install Python deps)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L46",
+      "id": "auto_apply_claude_codeblock_3",
+      "community": 4,
+      "norm_label": "code:powershell (# first time \u2014 create venv and install python deps)"
+    },
+    {
+      "label": "code:powershell (cd backend)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L69",
+      "id": "auto_apply_claude_codeblock_4",
+      "community": 4,
+      "norm_label": "code:powershell (cd backend)"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L74",
+      "id": "auto_apply_claude_architecture",
+      "community": 4,
+      "norm_label": "architecture"
+    },
+    {
+      "label": "code:block5 (backend/)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L78",
+      "id": "auto_apply_claude_codeblock_5",
+      "community": 4,
+      "norm_label": "code:block5 (backend/)"
+    },
+    {
+      "label": "Configuration",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L105",
+      "id": "auto_apply_claude_configuration",
+      "community": 4,
+      "norm_label": "configuration"
+    },
+    {
+      "label": "HKUST job board scraping",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L111",
+      "id": "auto_apply_claude_hkust_job_board_scraping",
+      "community": 4,
+      "norm_label": "hkust job board scraping"
+    },
+    {
+      "label": "Document generation",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L118",
+      "id": "auto_apply_claude_document_generation",
+      "community": 4,
+      "norm_label": "document generation"
+    },
+    {
+      "label": "SSE streaming (web only)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L124",
+      "id": "auto_apply_claude_sse_streaming_web_only",
+      "community": 4,
+      "norm_label": "sse streaming (web only)"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "readme_md",
+      "community": 2,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Auto-Apply",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "auto_apply_readme_auto_apply",
+      "community": 2,
+      "norm_label": "auto-apply"
+    },
+    {
+      "label": "Project Structure",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "id": "auto_apply_readme_project_structure",
+      "community": 2,
+      "norm_label": "project structure"
+    },
+    {
+      "label": "code:block1 (Auto-Apply/)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L11",
+      "id": "auto_apply_readme_codeblock_1",
+      "community": 2,
+      "norm_label": "code:block1 (auto-apply/)"
+    },
+    {
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L64",
+      "id": "auto_apply_readme_features",
+      "community": 2,
+      "norm_label": "features"
+    },
+    {
+      "label": "Setup",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L74",
+      "id": "auto_apply_readme_setup",
+      "community": 2,
+      "norm_label": "setup"
+    },
+    {
+      "label": "1. Clone and create the virtual environment",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L76",
+      "id": "auto_apply_readme_1_clone_and_create_the_virtual_environment",
+      "community": 2,
+      "norm_label": "1. clone and create the virtual environment"
+    },
+    {
+      "label": "code:powershell (git clone <repo-url>)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L78",
+      "id": "auto_apply_readme_codeblock_2",
+      "community": 2,
+      "norm_label": "code:powershell (git clone <repo-url>)"
+    },
+    {
+      "label": "2. Configure secrets \u2014 `backend/.env`",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L85",
+      "id": "auto_apply_readme_2_configure_secrets_backend_env",
+      "community": 2,
+      "norm_label": "2. configure secrets \u2014 `backend/.env`"
+    },
+    {
+      "label": "code:block3 (DASHSCOPE_API_KEY=sk-your-key-here)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L87",
+      "id": "auto_apply_readme_codeblock_3",
+      "community": 2,
+      "norm_label": "code:block3 (dashscope_api_key=sk-your-key-here)"
+    },
+    {
+      "label": "3. Configure settings \u2014 `backend/config.py`",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L91",
+      "id": "auto_apply_readme_3_configure_settings_backend_config_py",
+      "community": 2,
+      "norm_label": "3. configure settings \u2014 `backend/config.py`"
+    },
+    {
+      "label": "4. Add your documents",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L103",
+      "id": "auto_apply_readme_4_add_your_documents",
+      "community": 2,
+      "norm_label": "4. add your documents"
+    },
+    {
+      "label": "Usage",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L110",
+      "id": "auto_apply_readme_usage",
+      "community": 2,
+      "norm_label": "usage"
+    },
+    {
+      "label": "Web UI (recommended)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L112",
+      "id": "auto_apply_readme_web_ui_recommended",
+      "community": 2,
+      "norm_label": "web ui (recommended)"
+    },
+    {
+      "label": "code:powershell (# Terminal 1 \u2014 backend)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L114",
+      "id": "auto_apply_readme_codeblock_4",
+      "community": 2,
+      "norm_label": "code:powershell (# terminal 1 \u2014 backend)"
+    },
+    {
+      "label": "code:powershell (cd frontend && npm run build)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L127",
+      "id": "auto_apply_readme_codeblock_5",
+      "community": 2,
+      "norm_label": "code:powershell (cd frontend && npm run build)"
+    },
+    {
+      "label": "CLI",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L131",
+      "id": "auto_apply_readme_cli",
+      "community": 2,
+      "norm_label": "cli"
+    },
+    {
+      "label": "code:powershell (cd backend)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L133",
+      "id": "auto_apply_readme_codeblock_6",
+      "community": 2,
+      "norm_label": "code:powershell (cd backend)"
+    },
+    {
+      "label": "Requirements",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L142",
+      "id": "auto_apply_readme_requirements",
+      "community": 2,
+      "norm_label": "requirements"
+    },
+    {
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L153",
+      "id": "auto_apply_readme_notes",
+      "community": 2,
+      "norm_label": "notes"
+    },
+    {
+      "label": "data_lake.md",
+      "file_type": "document",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L1",
+      "id": "backend_data_data_lake_md",
+      "community": 14,
+      "norm_label": "data_lake.md"
+    },
+    {
+      "label": "Personal Data Lake",
+      "file_type": "document",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L1",
+      "id": "data_data_lake_personal_data_lake",
+      "community": 14,
+      "norm_label": "personal data lake"
+    },
+    {
+      "label": "Background",
+      "file_type": "document",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L6",
+      "id": "data_data_lake_background",
+      "community": 14,
+      "norm_label": "background"
+    },
+    {
+      "label": "Key Strengths",
+      "file_type": "document",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L9",
+      "id": "data_data_lake_key_strengths",
+      "community": 14,
+      "norm_label": "key strengths"
+    },
+    {
+      "label": "Notable Achievements",
+      "file_type": "document",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L12",
+      "id": "data_data_lake_notable_achievements",
+      "community": 14,
+      "norm_label": "notable achievements"
+    },
+    {
+      "label": "Career Goals",
+      "file_type": "document",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L15",
+      "id": "data_data_lake_career_goals",
+      "community": 14,
+      "norm_label": "career goals"
+    },
+    {
+      "label": "Extra Info for Applications",
+      "file_type": "document",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L18",
+      "id": "data_data_lake_extra_info_for_applications",
+      "community": 14,
+      "norm_label": "extra info for applications"
+    },
+    {
+      "label": "Ian Cheah Yi Chen_CV_0b87aa60.md",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/Ian Cheah Yi Chen_CV_0b87aa60.md",
+      "source_location": "L1",
+      "id": "graphify_out_converted_ian_cheah_yi_chen_cv_0b87aa60_md",
+      "community": 32,
+      "norm_label": "ian cheah yi chen_cv_0b87aa60.md"
+    },
+    {
+      "label": "China Rise Securities Asset Management Company Limited_AI Product & MVP Development Intern_CoverLetter_1455b3f1.md",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/China Rise Securities Asset Management Company Limited_AI Product & MVP Development Intern_CoverLetter_1455b3f1.md",
+      "source_location": "L1",
+      "id": "graphify_out_converted_china_rise_securities_asset_management_company_limited_ai_product_mvp_development_intern_coverletter_1455b3f1_md",
+      "community": 33,
+      "norm_label": "china rise securities asset management company limited_ai product & mvp development intern_coverletter_1455b3f1.md"
+    },
+    {
+      "label": "Ion Pacific Limited_Fund Accounting Intern_CoverLetter_72c52fd3.md",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/Ion Pacific Limited_Fund Accounting Intern_CoverLetter_72c52fd3.md",
+      "source_location": "L1",
+      "id": "graphify_out_converted_ion_pacific_limited_fund_accounting_intern_coverletter_72c52fd3_md",
+      "community": 34,
+      "norm_label": "ion pacific limited_fund accounting intern_coverletter_72c52fd3.md"
+    },
+    {
+      "label": "CV_China Rise Securities Asset Management Company Limited_AI Product & MVP Development Intern_c0f9e61b.md",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/CV_China Rise Securities Asset Management Company Limited_AI Product & MVP Development Intern_c0f9e61b.md",
+      "source_location": "L1",
+      "id": "graphify_out_converted_cv_china_rise_securities_asset_management_company_limited_ai_product_mvp_development_intern_c0f9e61b_md",
+      "community": 35,
+      "norm_label": "cv_china rise securities asset management company limited_ai product & mvp development intern_c0f9e61b.md"
+    },
+    {
+      "label": "CV_Ion Pacific Limited_Fund Accounting Intern_265ddada.md",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/CV_Ion Pacific Limited_Fund Accounting Intern_265ddada.md",
+      "source_location": "L1",
+      "id": "graphify_out_converted_cv_ion_pacific_limited_fund_accounting_intern_265ddada_md",
+      "community": 36,
+      "norm_label": "cv_ion pacific limited_fund accounting intern_265ddada.md"
+    },
+    {
+      "label": "Return the body of a personalised cover letter, enforced to \u2264250 words.",
+      "file_type": "rationale",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L49",
+      "community": 15,
+      "norm_label": "return the body of a personalised cover letter, enforced to \u2264250 words.",
+      "id": "ai_cover_letter_gen_rationale_49"
+    },
+    {
+      "label": "_doc_path()",
+      "file_type": "code",
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L13",
+      "community": 1,
+      "norm_label": "_doc_path()",
+      "id": "routes_email_doc_path"
+    },
+    {
+      "label": "Send a job application email via Outlook COM.     Returns True on success, False",
+      "file_type": "rationale",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L22",
+      "community": 13,
+      "norm_label": "send a job application email via outlook com.     returns true on success, false",
+      "id": "mailer_outlook_sender_rationale_22"
+    },
+    {
+      "label": "main.py CLI",
+      "file_type": "code",
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "main.py cli",
+      "id": "main_cli"
+    },
+    {
+      "label": "Configuration",
+      "file_type": "code",
+      "source_file": "backend/config.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "configuration",
+      "id": "config"
+    },
+    {
+      "label": "FastAPI Server",
+      "file_type": "code",
+      "source_file": "backend/api/server.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "fastapi server",
+      "id": "api_server"
+    },
+    {
+      "label": "Job Scraper",
+      "file_type": "code",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "job scraper",
+      "id": "job_scraper"
+    },
+    {
+      "label": "Job Store",
+      "file_type": "code",
+      "source_file": "backend/state/job_store.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "job store",
+      "id": "job_store"
+    },
+    {
+      "label": "CV Tailor AI",
+      "file_type": "code",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "cv tailor ai",
+      "id": "cv_tailor"
+    },
+    {
+      "label": "Cover Letter Gen AI",
+      "file_type": "code",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "cover letter gen ai",
+      "id": "cover_letter_gen"
+    },
+    {
+      "label": "CV DOCX Builder",
+      "file_type": "code",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "cv docx builder",
+      "id": "cv_builder"
+    },
+    {
+      "label": "Cover Letter DOCX Builder",
+      "file_type": "code",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "cover letter docx builder",
+      "id": "letter_builder"
+    },
+    {
+      "label": "Outlook Mailer",
+      "file_type": "code",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "outlook mailer",
+      "id": "outlook_sender"
+    },
+    {
+      "label": "backend/utils/helpers.py utilities",
+      "file_type": "code",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "backend/utils/helpers.py utilities",
+      "id": "py_utils_helpers"
+    },
+    {
+      "label": "frontend API client",
+      "file_type": "code",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "frontend api client",
+      "id": "js_api_client"
+    },
+    {
+      "label": "App Component",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "app component",
+      "id": "react_app"
+    },
+    {
+      "label": "Dashboard Component",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "dashboard component",
+      "id": "react_dashboard"
+    },
+    {
+      "label": "Jobs Component",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "jobs component",
+      "id": "react_jobs"
+    },
+    {
+      "label": "Scrape Component",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "scrape component",
+      "id": "react_scrape"
+    },
+    {
+      "label": "Settings Component",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "settings component",
+      "id": "react_settings"
+    },
+    {
+      "label": "StatCard Component",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "statcard component",
+      "id": "react_statcard"
+    },
+    {
+      "label": "Personal Data Lake",
+      "file_type": "document",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "personal data lake",
+      "id": "doc_data_lake"
+    },
+    {
+      "label": "Auto-Apply README",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 4,
+      "norm_label": "auto-apply readme",
+      "id": "doc_readme"
+    },
+    {
+      "label": "React Root main.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "react root main.jsx",
+      "id": "react_main"
+    },
+    {
+      "label": "FilterPanel Component",
+      "file_type": "code",
+      "source_file": "frontend/src/components/FilterPanel.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "filterpanel component",
+      "id": "react_filterpanel"
+    },
+    {
+      "label": "JobTable Component",
+      "file_type": "code",
+      "source_file": "frontend/src/components/JobTable.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "jobtable component",
+      "id": "react_jobtable"
+    },
+    {
+      "label": "ProgressLog Component",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ProgressLog.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "progresslog component",
+      "id": "react_progresslog"
+    },
+    {
+      "label": "StatusBadge Component",
+      "file_type": "code",
+      "source_file": "frontend/src/components/StatusBadge.jsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 6,
+      "norm_label": "statusbadge component",
+      "id": "react_statusbadge"
+    },
+    {
+      "label": "Vite Configuration",
+      "file_type": "code",
+      "source_file": "frontend/vite.config.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 37,
+      "norm_label": "vite configuration",
+      "id": "config_vite"
+    },
+    {
+      "label": "Tailwind Configuration",
+      "file_type": "code",
+      "source_file": "frontend/tailwind.config.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 19,
+      "norm_label": "tailwind configuration",
+      "id": "config_tailwind"
+    },
+    {
+      "label": "PostCSS Configuration",
+      "file_type": "code",
+      "source_file": "frontend/postcss.config.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 19,
+      "norm_label": "postcss configuration",
+      "id": "config_postcss"
+    },
+    {
+      "label": "Frontend Dependencies",
+      "file_type": "code",
+      "source_file": "frontend/package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 38,
+      "norm_label": "frontend dependencies",
+      "id": "json_frontend_package"
+    },
+    {
+      "label": "Backend Python Requirements",
+      "file_type": "code",
+      "source_file": "backend/requirements.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 39,
+      "norm_label": "backend python requirements",
+      "id": "req_backend"
+    }
+  ],
+  "links": [
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_check_config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_pick_multi"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_pick_filters"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L99",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_summarise_filters"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L132",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_prompt_pages"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_display_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L173",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_prompt_job_selection"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L208",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_process_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L235",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_review_documents"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L259",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_confirm_send"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L294",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_send_emails"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L324",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_show_manual_links"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L345",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_py",
+      "target": "backend_main_main"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_rationale_1",
+      "target": "backend_main_py"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L350",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_check_config"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_pick_filters",
+      "target": "backend_main_pick_multi"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_rationale_51",
+      "target": "backend_main_pick_multi"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "backend_main_pick_multi",
+      "target": "pages_settings_input"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L371",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_pick_filters"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "backend_main_pick_filters",
+      "target": "pages_settings_input"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L372",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_summarise_filters"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L376",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_prompt_pages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "backend_main_prompt_pages",
+      "target": "pages_settings_input"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "backend_main_prompt_pages",
+      "target": "utils_helpers_parse_page_input"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L399",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_display_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L403",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_prompt_job_selection"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L174",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_rationale_174",
+      "target": "backend_main_prompt_job_selection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "backend_main_prompt_job_selection",
+      "target": "pages_settings_input"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L412",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_process_jobs"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L209",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_rationale_209",
+      "target": "backend_main_process_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "backend_main_process_jobs",
+      "target": "ai_cv_tailor_tailor_cv"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L219",
+      "weight": 1.0,
+      "source": "backend_main_process_jobs",
+      "target": "document_cv_builder_build_cv_docx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L223",
+      "weight": 1.0,
+      "source": "backend_main_process_jobs",
+      "target": "ai_cover_letter_gen_generate_cover_letter"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L224",
+      "weight": 1.0,
+      "source": "backend_main_process_jobs",
+      "target": "document_letter_builder_build_letter_docx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L415",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_review_documents"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L252",
+      "weight": 1.0,
+      "source": "backend_main_review_documents",
+      "target": "pages_settings_input"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L418",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_confirm_send"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L282",
+      "weight": 1.0,
+      "source": "backend_main_confirm_send",
+      "target": "pages_settings_input"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L422",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_send_emails"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/main.py",
+      "source_location": "L425",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_main_main",
+      "target": "backend_main_show_manual_links"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L354",
+      "weight": 1.0,
+      "source": "backend_main_main",
+      "target": "utils_helpers_extract_docx_text"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L359",
+      "weight": 1.0,
+      "source": "backend_main_main",
+      "target": "utils_helpers_read_text_file"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/main.py",
+      "source_location": "L378",
+      "weight": 1.0,
+      "source": "backend_main_main",
+      "target": "scraper_job_scraper_scrape_jobs"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_ai_cover_letter_gen_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_ai_cover_letter_gen_py",
+      "target": "ai_cover_letter_gen_get_client"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_ai_cover_letter_gen_py",
+      "target": "ai_cover_letter_gen_call_api"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_ai_cover_letter_gen_py",
+      "target": "ai_cover_letter_gen_generate_cover_letter"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ai_cover_letter_gen_call_api",
+      "target": "ai_cover_letter_gen_get_client"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ai_cover_letter_gen_generate_cover_letter",
+      "target": "ai_cover_letter_gen_call_api"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "ai_cover_letter_gen_rationale_48",
+      "target": "ai_cover_letter_gen_generate_cover_letter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ai_cover_letter_gen_rationale_49",
+      "target": "ai_cover_letter_gen_generate_cover_letter"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_ai_cv_tailor_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_ai_cv_tailor_py",
+      "target": "ai_cv_tailor_get_client"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_ai_cv_tailor_py",
+      "target": "ai_cv_tailor_tailor_cv"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ai_cv_tailor_tailor_cv",
+      "target": "ai_cv_tailor_get_client"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ai_cv_tailor_rationale_37",
+      "target": "ai_cv_tailor_tailor_cv"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_ai_email_gen_py",
+      "target": "config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_ai_email_gen_py",
+      "target": "ai_email_gen_get_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "backend_ai_email_gen_py",
+      "target": "ai_email_gen_generate_email",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "ai_email_gen_generate_email",
+      "target": "ai_email_gen_get_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/ai/email_gen.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "ai_email_gen_rationale_37",
+      "target": "ai_email_gen_generate_email",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "routes_email_send_emails",
+      "target": "ai_email_gen_generate_email"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_models_py",
+      "target": "api_models_jobresponse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_models_py",
+      "target": "api_models_scraperequest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_models_py",
+      "target": "api_models_processrequest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_models_py",
+      "target": "api_models_sendrequest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_models_py",
+      "target": "api_models_applypatchrequest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_models_py",
+      "target": "api_models_configupdate"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_models_jobresponse",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_models_scraperequest",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_models_processrequest",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_models_sendrequest",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_models_applypatchrequest",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/models.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_models_configupdate",
+      "target": "basemodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/server.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_server_py",
+      "target": "api_server_lifespan"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/server.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_server_py",
+      "target": "api_server_serve_spa"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_config_routes_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_config_routes_py",
+      "target": "routes_config_routes_load_settings"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_config_routes_py",
+      "target": "routes_config_routes_save_settings"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_config_routes_py",
+      "target": "routes_config_routes_update_env_key"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_config_routes_py",
+      "target": "routes_config_routes_get_config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_config_routes_py",
+      "target": "routes_config_routes_update_config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_config_routes_py",
+      "target": "routes_config_routes_upload_cv"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_config_routes_py",
+      "target": "routes_config_routes_upload_datalake"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "routes_config_routes_update_config",
+      "target": "routes_config_routes_load_settings"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "routes_config_routes_update_config",
+      "target": "routes_config_routes_save_settings"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/config_routes.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "routes_config_routes_update_config",
+      "target": "routes_config_routes_update_env_key"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_email_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_email_py",
+      "target": "routes_email_send_emails"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_email_py",
+      "target": "routes_email_doc_path"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "routes_email_send_emails",
+      "target": "utils_helpers_extract_docx_text"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "routes_email_send_emails",
+      "target": "utils_helpers_read_text_file"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "routes_email_send_emails",
+      "target": "routes_email_doc_path"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_jobs_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_jobs_py",
+      "target": "routes_jobs_df_to_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_jobs_py",
+      "target": "routes_jobs_get_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_jobs_py",
+      "target": "routes_jobs_delete_all_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_jobs_py",
+      "target": "routes_jobs_delete_job"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_jobs_py",
+      "target": "routes_jobs_mark_job_applied"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_jobs_py",
+      "target": "routes_jobs_scrape_jobs_stream"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "routes_jobs_get_jobs",
+      "target": "routes_jobs_df_to_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "routes_jobs_scrape_jobs_stream",
+      "target": "utils_helpers_parse_page_input"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_process_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_process_py",
+      "target": "routes_process_process_jobs_stream"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_process_py",
+      "target": "routes_process_download_cv"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_process_py",
+      "target": "routes_process_download_letter"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_process_py",
+      "target": "routes_process_docx_to_pdf"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_process_py",
+      "target": "routes_process_preview_cv"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L163",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_api_routes_process_py",
+      "target": "routes_process_preview_letter"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "routes_process_process_jobs_stream",
+      "target": "utils_helpers_extract_docx_text"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "routes_process_process_jobs_stream",
+      "target": "utils_helpers_read_text_file"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L156",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "routes_process_preview_cv",
+      "target": "routes_process_docx_to_pdf"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L168",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "routes_process_preview_letter",
+      "target": "routes_process_docx_to_pdf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/api/routes/process.py",
+      "source_location": "L119",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "routes_process_rationale_119",
+      "target": "routes_process_docx_to_pdf"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_cv_builder_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_cv_builder_py",
+      "target": "document_cv_builder_apply_replacement"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_cv_builder_py",
+      "target": "document_cv_builder_build_cv_docx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "document_cv_builder_build_cv_docx",
+      "target": "document_cv_builder_apply_replacement"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "document_cv_builder_rationale_10",
+      "target": "document_cv_builder_apply_replacement"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "document_cv_builder_rationale_31",
+      "target": "document_cv_builder_build_cv_docx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/document/cv_builder.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "document_cv_builder_build_cv_docx",
+      "target": "utils_helpers_sanitize_filename"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_letter_builder_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_letter_builder_py",
+      "target": "document_letter_builder_add_para"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_letter_builder_py",
+      "target": "document_letter_builder_set_margins"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_letter_builder_py",
+      "target": "document_letter_builder_clean_body"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_letter_builder_py",
+      "target": "document_letter_builder_build_letter_docx"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_document_letter_builder_py",
+      "target": "document_letter_builder_convert_to_pdf"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "document_letter_builder_build_letter_docx",
+      "target": "document_letter_builder_add_para"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "document_letter_builder_build_letter_docx",
+      "target": "document_letter_builder_set_margins"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "document_letter_builder_build_letter_docx",
+      "target": "document_letter_builder_clean_body"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "document_letter_builder_build_letter_docx",
+      "target": "document_letter_builder_convert_to_pdf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "document_letter_builder_rationale_44",
+      "target": "document_letter_builder_build_letter_docx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/document/letter_builder.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "document_letter_builder_build_letter_docx",
+      "target": "utils_helpers_sanitize_filename"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_mailer_outlook_sender_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_mailer_outlook_sender_py",
+      "target": "mailer_outlook_sender_is_available"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "backend_mailer_outlook_sender_py",
+      "target": "mailer_outlook_sender_dispatch_outlook",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "backend_mailer_outlook_sender_py",
+      "target": "mailer_outlook_sender_default_body",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_mailer_outlook_sender_py",
+      "target": "mailer_outlook_sender_send_application"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "mailer_outlook_sender_send_application",
+      "target": "mailer_outlook_sender_dispatch_outlook",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "mailer_outlook_sender_rationale_20",
+      "target": "mailer_outlook_sender_dispatch_outlook",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "mailer_outlook_sender_send_application",
+      "target": "mailer_outlook_sender_default_body",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "mailer_outlook_sender_rationale_58",
+      "target": "mailer_outlook_sender_send_application",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/mailer/outlook_sender.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "mailer_outlook_sender_rationale_22",
+      "target": "mailer_outlook_sender_send_application"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/filter_options.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scraper_filter_options_rationale_1",
+      "target": "backend_scraper_filter_options_py"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_scraper_job_scraper_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_scraper_job_scraper_py",
+      "target": "scraper_job_scraper_build_session"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_scraper_job_scraper_py",
+      "target": "scraper_job_scraper_build_url"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_scraper_job_scraper_py",
+      "target": "scraper_job_scraper_safe_get"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_scraper_job_scraper_py",
+      "target": "scraper_job_scraper_parse_list_page"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_scraper_job_scraper_py",
+      "target": "scraper_job_scraper_parse_detail_page"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L152",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_scraper_job_scraper_py",
+      "target": "scraper_job_scraper_scrape_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scraper_job_scraper_scrape_jobs",
+      "target": "scraper_job_scraper_build_session"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L162",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scraper_job_scraper_scrape_jobs",
+      "target": "scraper_job_scraper_build_url"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scraper_job_scraper_rationale_29",
+      "target": "scraper_job_scraper_build_url"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L173",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scraper_job_scraper_scrape_jobs",
+      "target": "scraper_job_scraper_safe_get"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L180",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scraper_job_scraper_scrape_jobs",
+      "target": "scraper_job_scraper_parse_list_page"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "scraper_job_scraper_parse_list_page",
+      "target": "utils_helpers_clean_text"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L198",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scraper_job_scraper_scrape_jobs",
+      "target": "scraper_job_scraper_parse_detail_page"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "scraper_job_scraper_parse_detail_page",
+      "target": "utils_helpers_clean_text"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scraper/job_scraper.py",
+      "source_location": "L153",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scraper_job_scraper_rationale_153",
+      "target": "scraper_job_scraper_scrape_jobs"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_load_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_save_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_existing_keys"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_is_duplicate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_append_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_mark_applied"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_mark_letter_done"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_delete_job"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_state_job_store_py",
+      "target": "state_job_store_delete_all_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "state_job_store_mark_applied",
+      "target": "state_job_store_save_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "state_job_store_mark_letter_done",
+      "target": "state_job_store_save_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "state_job_store_delete_job",
+      "target": "state_job_store_save_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "state_job_store_delete_all_jobs",
+      "target": "state_job_store_save_jobs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/state/job_store.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "state_job_store_is_duplicate",
+      "target": "state_job_store_existing_keys"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_utils_helpers_py",
+      "target": "utils_helpers_sanitize_filename"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_utils_helpers_py",
+      "target": "utils_helpers_extract_docx_text"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_utils_helpers_py",
+      "target": "utils_helpers_read_text_file"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_utils_helpers_py",
+      "target": "utils_helpers_clean_text"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "backend_utils_helpers_py",
+      "target": "utils_helpers_parse_page_input"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/api/routes/email.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "routes_email_doc_path",
+      "target": "utils_helpers_sanitize_filename"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "utils_helpers_rationale_16",
+      "target": "utils_helpers_extract_docx_text"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "utils_helpers_rationale_29",
+      "target": "utils_helpers_read_text_file"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/helpers.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "utils_helpers_rationale_43",
+      "target": "utils_helpers_parse_page_input"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_app_jsx",
+      "target": "frontend_src_pages_dashboard_jsx"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_app_jsx",
+      "target": "frontend_src_pages_scrape_jsx"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_app_jsx",
+      "target": "frontend_src_pages_jobs_jsx"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_app_jsx",
+      "target": "frontend_src_pages_settings_jsx"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_app_jsx",
+      "target": "src_app_usescrolltotop"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_app_jsx",
+      "target": "src_app_nav"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_app_jsx",
+      "target": "src_app_app"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_main_jsx",
+      "target": "frontend_src_app_jsx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_app",
+      "target": "src_app_usescrolltotop"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_api_client_js",
+      "target": "api_client_req"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_api_client_js",
+      "target": "api_client_api"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_api_client_js",
+      "target": "api_client_scrapesse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L72",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_api_client_js",
+      "target": "api_client_processsse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L109",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_api_client_js",
+      "target": "api_client_cvurl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L110",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_api_client_js",
+      "target": "api_client_letterurl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L111",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_api_client_js",
+      "target": "api_client_cvpreviewurl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/api/client.js",
+      "source_location": "L112",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_api_client_js",
+      "target": "api_client_letterpreviewurl"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/JobTable.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_jobtable_jsx",
+      "target": "frontend_src_api_client_js"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "frontend_src_api_client_js"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "frontend_src_api_client_js"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_scrape_jsx",
+      "target": "frontend_src_api_client_js"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_settings_jsx",
+      "target": "frontend_src_api_client_js"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "api_client_api"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "api_client_api"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_settings_jsx",
+      "target": "api_client_api"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_scrape_jsx",
+      "target": "api_client_scrapesse"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "api_client_processsse"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/JobTable.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_jobtable_jsx",
+      "target": "api_client_cvurl"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "api_client_cvurl"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/JobTable.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_jobtable_jsx",
+      "target": "api_client_letterurl"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "api_client_letterurl"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "api_client_cvpreviewurl"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "api_client_letterpreviewurl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/FilterPanel.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_filterpanel_jsx",
+      "target": "components_filterpanel_filter_groups"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/FilterPanel.jsx",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_filterpanel_jsx",
+      "target": "components_filterpanel_filterpanel"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_scrape_jsx",
+      "target": "frontend_src_components_filterpanel_jsx"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/JobTable.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_jobtable_jsx",
+      "target": "components_jobtable_jobtable"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "frontend_src_components_jobtable_jsx"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/ProgressLog.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_progresslog_jsx",
+      "target": "components_progresslog_progresslog"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "frontend_src_components_progresslog_jsx"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_scrape_jsx",
+      "target": "frontend_src_components_progresslog_jsx"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/StatusBadge.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_statusbadge_jsx",
+      "target": "components_statusbadge_statusbadge"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "pages_dashboard_statcard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "pages_dashboard_dashboard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "pages_jobs_step_labels"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_jobs_jsx",
+      "target": "pages_jobs_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_scrape_jsx",
+      "target": "pages_scrape_scrape"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_settings_jsx",
+      "target": "pages_settings_section"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_settings_jsx",
+      "target": "pages_settings_field"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_settings_jsx",
+      "target": "pages_settings_input"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_settings_jsx",
+      "target": "pages_settings_settings"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "claude_md",
+      "target": "auto_apply_claude_claude_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_md",
+      "target": "doc_readme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_frontend_testing_with_playwright_mcp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_monorepo_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_running_the_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_configuration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_hkust_job_board_scraping",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_document_generation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "auto_apply_claude_claude_md",
+      "target": "auto_apply_claude_sse_streaming_web_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "auto_apply_claude_frontend_testing_with_playwright_mcp",
+      "target": "auto_apply_claude_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "auto_apply_claude_monorepo_structure",
+      "target": "auto_apply_claude_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "auto_apply_claude_running_the_project",
+      "target": "auto_apply_claude_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "auto_apply_claude_running_the_project",
+      "target": "auto_apply_claude_codeblock_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "auto_apply_claude_architecture",
+      "target": "auto_apply_claude_codeblock_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme_md",
+      "target": "auto_apply_readme_auto_apply",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "auto_apply_readme_auto_apply",
+      "target": "auto_apply_readme_project_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "auto_apply_readme_auto_apply",
+      "target": "auto_apply_readme_features",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "auto_apply_readme_auto_apply",
+      "target": "auto_apply_readme_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "auto_apply_readme_auto_apply",
+      "target": "auto_apply_readme_usage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "auto_apply_readme_auto_apply",
+      "target": "auto_apply_readme_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "auto_apply_readme_auto_apply",
+      "target": "auto_apply_readme_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "auto_apply_readme_project_structure",
+      "target": "auto_apply_readme_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "auto_apply_readme_setup",
+      "target": "auto_apply_readme_1_clone_and_create_the_virtual_environment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "auto_apply_readme_setup",
+      "target": "auto_apply_readme_2_configure_secrets_backend_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "auto_apply_readme_setup",
+      "target": "auto_apply_readme_3_configure_settings_backend_config_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "auto_apply_readme_setup",
+      "target": "auto_apply_readme_4_add_your_documents",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "auto_apply_readme_1_clone_and_create_the_virtual_environment",
+      "target": "auto_apply_readme_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "auto_apply_readme_2_configure_secrets_backend_env",
+      "target": "auto_apply_readme_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "auto_apply_readme_usage",
+      "target": "auto_apply_readme_web_ui_recommended",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "source": "auto_apply_readme_usage",
+      "target": "auto_apply_readme_cli",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "auto_apply_readme_web_ui_recommended",
+      "target": "auto_apply_readme_codeblock_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "auto_apply_readme_web_ui_recommended",
+      "target": "auto_apply_readme_codeblock_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L133",
+      "weight": 1.0,
+      "source": "auto_apply_readme_cli",
+      "target": "auto_apply_readme_codeblock_6",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "backend_data_data_lake_md",
+      "target": "data_data_lake_personal_data_lake",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "data_data_lake_personal_data_lake",
+      "target": "data_data_lake_background",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "data_data_lake_personal_data_lake",
+      "target": "data_data_lake_key_strengths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "data_data_lake_personal_data_lake",
+      "target": "data_data_lake_notable_achievements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "data_data_lake_personal_data_lake",
+      "target": "data_data_lake_career_goals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/data/data_lake.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "data_data_lake_personal_data_lake",
+      "target": "data_data_lake_extra_info_for_applications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_cli",
+      "target": "config"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_cli",
+      "target": "job_scraper"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_cli",
+      "target": "job_store"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_cli",
+      "target": "cv_tailor"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_cli",
+      "target": "cover_letter_gen"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_cli",
+      "target": "cv_builder"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_cli",
+      "target": "letter_builder"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "main_cli",
+      "target": "outlook_sender"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/api/server.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "api_server",
+      "target": "config"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "api_server",
+      "target": "job_scraper"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/api/routes/jobs.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "api_server",
+      "target": "job_store"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/api/routes/process.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "api_server",
+      "target": "cv_tailor"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/api/routes/process.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "api_server",
+      "target": "cover_letter_gen"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/api/routes/email.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "api_server",
+      "target": "outlook_sender"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "backend/ai/cv_tailor.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "cv_tailor",
+      "target": "cv_builder"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "backend/ai/cover_letter_gen.py",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "cover_letter_gen",
+      "target": "letter_builder"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "frontend/src/api/client.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_api_client",
+      "target": "py_utils_helpers"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_dashboard",
+      "target": "js_api_client"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_scrape",
+      "target": "js_api_client"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_jobs",
+      "target": "js_api_client"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/pages/Settings.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_settings",
+      "target": "js_api_client"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "backend/data/data_lake.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "doc_data_lake",
+      "target": "js_api_client"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/App.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_app",
+      "target": "react_dashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/App.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_app",
+      "target": "react_scrape"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/App.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_app",
+      "target": "react_jobs"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/App.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_app",
+      "target": "react_settings"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/src/main.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_main",
+      "target": "react_app"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "doc_readme",
+      "target": "react_app"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_dashboard",
+      "target": "react_statcard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_jobs",
+      "target": "react_jobtable"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "frontend/src/pages/Jobs.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_jobs",
+      "target": "react_statusbadge"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_scrape",
+      "target": "react_filterpanel"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/pages/Scrape.jsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "react_scrape",
+      "target": "react_progresslog"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/tailwind.config.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "config_tailwind",
+      "target": "config_postcss"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "web_interface",
+      "label": "FastAPI Web Interface",
+      "nodes": [
+        "api_server",
+        "config",
+        "job_scraper",
+        "job_store",
+        "cv_tailor",
+        "cover_letter_gen",
+        "cv_builder",
+        "letter_builder",
+        "outlook_sender"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "backend/api/server.py"
+    },
+    {
+      "id": "cli_interface",
+      "label": "CLI Interface",
+      "nodes": [
+        "main_cli",
+        "config",
+        "job_scraper",
+        "job_store",
+        "cv_tailor",
+        "cover_letter_gen",
+        "cv_builder",
+        "letter_builder",
+        "outlook_sender"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/main.py"
+    },
+    {
+      "id": "frontend_routing_architecture",
+      "label": "Frontend Navigation and Routing",
+      "nodes": [
+        "react_app",
+        "react_dashboard",
+        "react_scrape",
+        "react_jobs",
+        "react_settings"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.75,
+      "source_file": "frontend/src/App.jsx"
+    },
+    {
+      "id": "frontend_tooling_stack",
+      "label": "Frontend Tooling Configs",
+      "nodes": [
+        "config_vite",
+        "config_tailwind",
+        "config_postcss"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "frontend/vite.config.js"
+    },
+    {
+      "id": "frontend_data_fetching",
+      "label": "Client APIs used by pages",
+      "nodes": [
+        "js_api_client",
+        "react_dashboard",
+        "react_jobs",
+        "react_scrape",
+        "react_settings"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "frontend/src/api/client.js"
+    }
+  ],
+  "built_at_commit": "ac5b7731af64baaca6ab07787d04c5c2e6a911e9"
+}

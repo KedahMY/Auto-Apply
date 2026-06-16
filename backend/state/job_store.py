@@ -5,7 +5,7 @@ import config
 _COLUMNS = [
     "company", "job_title", "job_nature", "email", "website",
     "details", "deadline", "posting_date", "applied", "letter",
-    "job_id", "detail_url",
+    "job_id", "detail_url", "cv_file", "letter_file",
 ]
 
 
@@ -18,6 +18,11 @@ def load_jobs() -> pd.DataFrame:
         for col in ("applied", "letter"):
             if col not in df.columns:
                 df[col] = False
+        for col in ("cv_file", "letter_file"):
+            if col not in df.columns:
+                df[col] = ""
+            else:
+                df[col] = df[col].fillna("")
         return df
     except Exception as e:
         print(f"Warning: could not load {path}: {e}")
@@ -58,12 +63,30 @@ def append_jobs(df: pd.DataFrame, new_rows: list[dict]) -> pd.DataFrame:
 
 
 def mark_applied(df: pd.DataFrame, idx: int) -> pd.DataFrame:
+    # Cast to object first: pandas 3.x infers text columns as StringDtype, which
+    # rejects a bool assignment. object dtype accepts it and saves as "True".
+    df["applied"] = df["applied"].astype(object)
     df.loc[idx, "applied"] = True
     save_jobs(df)
     return df
 
 
-def mark_letter_done(df: pd.DataFrame, idx: int) -> pd.DataFrame:
+def mark_letter_done(df: pd.DataFrame, idx: int, cv_file: str = "", letter_file: str = "") -> pd.DataFrame:
+    df["letter"] = df["letter"].astype(object)
     df.loc[idx, "letter"] = True
+    if cv_file:
+        df.loc[idx, "cv_file"] = cv_file
+    if letter_file:
+        df.loc[idx, "letter_file"] = letter_file
     save_jobs(df)
     return df
+
+
+def delete_job(df: pd.DataFrame, idx: int) -> pd.DataFrame:
+    df = df.drop(index=idx).reset_index(drop=True)
+    save_jobs(df)
+    return df
+
+
+def delete_all_jobs() -> None:
+    save_jobs(pd.DataFrame(columns=_COLUMNS))

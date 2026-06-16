@@ -37,7 +37,7 @@ class ApplyPatchRequest(BaseModel):
 
 
 class ConfigUpdate(BaseModel):
-    dashscope_api_key: Optional[str] = None
+    deepseek_api_key: Optional[str] = None
     session_cookie: Optional[str] = None
     model_id: Optional[str] = None
     user_name: Optional[str] = None

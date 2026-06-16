@@ -9,6 +9,11 @@ from utils.helpers import clean_text
 
 _BASE = "https://career.hkust.edu.hk/web/"
 
+
+class SessionExpiredError(Exception):
+    """Raised when the job board bounces a request to the CAS login page,
+    meaning the configured PHPSESSID cookie is no longer valid."""
+
 _HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -49,11 +54,25 @@ def _build_url(filters: dict, page_num: int) -> str:
     return f"{config.HKUST_JOB_BOARD_URL}?{urlencode(params)}"
 
 
+def _is_login_redirect(r) -> bool:
+    """True if the request was bounced to the CAS login page (expired cookie)."""
+    if "cas_login" in r.url:
+        return True
+    return any("cas_login" in prev.headers.get("Location", "") for prev in r.history)
+
+
 def _safe_get(session: requests.Session, url: str):
     for attempt in range(3):
         try:
             r = session.get(url, headers=_HEADERS, timeout=config.REQUEST_TIMEOUT)
             if r.status_code == 200:
+                if _is_login_redirect(r):
+                    raise SessionExpiredError(
+                        "HKUST session cookie expired — the job board redirected to "
+                        "the CAS login page. Grab a fresh PHPSESSID cookie from your "
+                        "browser (DevTools → Application → Cookies on "
+                        "career.hkust.edu.hk) and update it in Settings, then retry."
+                    )
                 return r
             print(f"  Warning: HTTP {r.status_code} for {url}")
         except requests.RequestException as e:

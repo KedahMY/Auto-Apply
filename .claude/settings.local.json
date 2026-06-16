@@ -4,7 +4,8 @@
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_run_code_unsafe",
       "mcp__playwright__browser_take_screenshot",
-      "mcp__playwright__browser_snapshot"
+      "mcp__playwright__browser_snapshot",
+      "Bash(..\\\\.venv\\\\Scripts\\\\python -c \"import ast, pathlib; [ast.parse\\(f.read_text\\(encoding='utf-8'\\)\\) for f in pathlib.Path\\('.'\\).rglob\\('*.py'\\) if '.git' not in str\\(f\\) and '__pycache__' not in str\\(f\\) and '.venv' not in str\\(f\\)]; print\\('OK'\\)\")"
     ]
   }
 }

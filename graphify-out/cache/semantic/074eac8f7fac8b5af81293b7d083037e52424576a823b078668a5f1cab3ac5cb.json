@@ -1,0 +1,1 @@
+{"nodes": [], "edges": [{"source": "api_server", "target": "outlook_sender", "relation": "calls", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "backend/api/routes/email.py", "source_location": null, "weight": 1.0}], "hyperedges": []}

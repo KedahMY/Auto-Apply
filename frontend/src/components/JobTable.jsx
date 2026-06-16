@@ -1,7 +1,6 @@
-import StatusBadge from './StatusBadge'
 import { cvUrl, letterUrl } from '../api/client'
 
-export default function JobTable({ jobs, selected, onToggle, onToggleAll, docs, onMarkApplied }) {
+export default function JobTable({ jobs, selected, onToggle, onToggleAll, docs, onMarkApplied, onDelete, onPreview }) {
   const allSelected = jobs.length > 0 && jobs.every(j => selected.has(j.row_index))
   const someSelected = jobs.some(j => selected.has(j.row_index))
 
@@ -23,10 +22,10 @@ export default function JobTable({ jobs, selected, onToggle, onToggleAll, docs, 
             <th className="px-3 py-3 text-left font-semibold text-gray-600">Job Title</th>
             <th className="px-3 py-3 text-left font-semibold text-gray-600 whitespace-nowrap">Nature</th>
             <th className="px-3 py-3 text-left font-semibold text-gray-600 whitespace-nowrap">Deadline</th>
-            <th className="px-3 py-3 text-left font-semibold text-gray-600">Method</th>
             <th className="px-3 py-3 text-left font-semibold text-gray-600">Status</th>
             <th className="px-3 py-3 text-left font-semibold text-gray-600">Docs</th>
             <th className="px-3 py-3 text-left font-semibold text-gray-600">Links</th>
+            <th className="px-3 py-3 w-8"></th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100">
@@ -66,33 +65,42 @@ export default function JobTable({ jobs, selected, onToggle, onToggleAll, docs, 
                   {job.deadline || '—'}
                 </td>
                 <td className="px-3 py-2.5">
-                  {job.email ? (
-                    <span className="text-xs text-blue-600 font-medium">Email</span>
+                  {String(job.applied).toLowerCase() === 'true' ? (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 border border-green-200">
+                      ✓ Applied
+                    </span>
                   ) : (
-                    <span className="text-xs text-gray-400">Manual</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`text-xs font-medium ${String(job.applied).toLowerCase() === 'no email' ? 'text-gray-400' : 'text-amber-600'}`}>
+                        {String(job.applied).toLowerCase() === 'no email' ? 'Manual' : 'Pending'}
+                      </span>
+                      <button
+                        onClick={() => onMarkApplied(job.row_index)}
+                        className="text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-400 hover:bg-green-100 hover:text-green-700 border border-gray-200 hover:border-green-300 transition-colors"
+                        title="Mark as applied"
+                      >
+                        Applied
+                      </button>
+                    </div>
                   )}
                 </td>
                 <td className="px-3 py-2.5">
-                  <div className="flex items-center gap-1.5">
-                    <StatusBadge applied={job.applied} />
-                    {String(job.applied).toLowerCase() !== 'true' && String(job.applied).toLowerCase() !== 'no email' && (
-                      <button
-                        onClick={() => onMarkApplied(job.row_index)}
-                        className="text-xs text-gray-400 hover:text-green-600 underline"
-                        title="Mark as applied"
-                      >
-                        mark
-                      </button>
-                    )}
-                  </div>
-                </td>
-                <td className="px-3 py-2.5">
                   {doc ? (
-                    <div className="flex gap-2 text-xs">
-                      <a href={cvUrl(doc.cv_file)} download
-                        className="text-blue-600 hover:underline font-medium">CV</a>
-                      <a href={letterUrl(doc.letter_file)} download
-                        className="text-blue-600 hover:underline font-medium">Letter</a>
+                    <div className="flex gap-2 text-xs flex-wrap">
+                      {onPreview && (
+                        <>
+                          <button onClick={() => onPreview(doc.cv_file, 'cv', `${job.company} — CV`)}
+                            className="text-blue-600 hover:underline font-medium">CV</button>
+                          <button onClick={() => onPreview(doc.letter_file, 'letter', `${job.company} — Letter`)}
+                            className="text-purple-600 hover:underline font-medium">Letter</button>
+                        </>
+                      )}
+                      {!onPreview && (
+                        <>
+                          <a href={cvUrl(doc.cv_file)} download className="text-blue-600 hover:underline font-medium">CV</a>
+                          <a href={letterUrl(doc.letter_file)} download className="text-blue-600 hover:underline font-medium">Letter</a>
+                        </>
+                      )}
                     </div>
                   ) : (
                     <span className="text-gray-300 text-xs">—</span>
@@ -109,6 +117,17 @@ export default function JobTable({ jobs, selected, onToggle, onToggleAll, docs, 
                         className="text-gray-400 hover:text-blue-600">Site</a>
                     )}
                   </div>
+                </td>
+                <td className="px-3 py-2.5">
+                  {onDelete && (
+                    <button
+                      onClick={() => onDelete(job.row_index)}
+                      className="text-gray-300 hover:text-red-500 transition-colors text-base leading-none"
+                      title="Delete job"
+                    >
+                      ×
+                    </button>
+                  )}
                 </td>
               </tr>
             )

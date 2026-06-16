@@ -31,6 +31,11 @@ def _set_margins(doc):
 
 def _clean_body(text: str) -> str:
     text = str(text)
+    # No em/en dashes in the cover letter — replace with a comma so the prose
+    # still reads naturally, then tidy any doubled-up punctuation/space.
+    text = re.sub(r" *[—–] *", ", ", text)
+    text = re.sub(r"\s+,", ",", text)
+    text = re.sub(r",\s*,", ", ", text)
     text = re.sub(r"  +", " ", text)
     text = re.sub(r"\t+", " ", text)
     text = text.replace("\r\n", "\n").replace("\r", "\n")

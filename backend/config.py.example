@@ -10,11 +10,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# --- Dashscope AI ---
-DASHSCOPE_API_KEY: str = os.environ["DASHSCOPE_API_KEY"]
-DASHSCOPE_BASE_URL = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
-DASHSCOPE_MODEL_ID = "qwen3.6-flash"
-DASHSCOPE_THINKING = False  # Set True to enable chain-of-thought (slower)
+# --- Deepseek AI ---
+DEEPSEEK_API_KEY: str = os.environ["DEEPSEEK_API_KEY"]
+DEEPSEEK_BASE_URL = "https://api.deepseek.com"
+DEEPSEEK_MODEL_ID = "deepseek-chat"
 
 # --- HKUST Job Board ---
 HKUST_JOB_BOARD_URL = "https://career.hkust.edu.hk/web/job.php"
@@ -30,6 +29,11 @@ SLEEP_BETWEEN_REQUESTS = 1.0  # seconds between detail-page fetches
 USER_NAME = "Your Full Name"
 USER_EMAIL = "your.email@example.com"
 BCC_EMAIL = ""  # Optional BCC address on outgoing emails (leave empty to disable)
+
+# --- Email sending ---
+# Applications are sent via classic Outlook desktop (COM automation). Outlook must be
+# installed, signed into your account, and running when you send. A Microsoft 365 tenant
+# may block SMTP basic auth, so desktop Outlook is the supported automated path.
 
 # --- File paths ---
 CV_FILE = r"data\Your_CV.docx"           # Your source CV (DOCX)

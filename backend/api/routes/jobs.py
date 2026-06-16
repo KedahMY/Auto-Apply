@@ -31,6 +31,8 @@ def _df_to_jobs(df) -> List[dict]:
             "detail_url": str(row.get("detail_url", "")),
             "applied": str(row.get("applied", "False")),
             "letter": str(row.get("letter", "False")),
+            "cv_file": v if (v := str(row.get("cv_file", "") or "").strip()) not in ("", "nan") else "",
+            "letter_file": v if (v := str(row.get("letter_file", "") or "").strip()) not in ("", "nan") else "",
         })
     return jobs
 
@@ -39,6 +41,21 @@ def _df_to_jobs(df) -> List[dict]:
 def get_jobs():
     df = job_store.load_jobs()
     return _df_to_jobs(df)
+
+
+@router.delete("/jobs")
+def delete_all_jobs():
+    job_store.delete_all_jobs()
+    return {"ok": True}
+
+
+@router.delete("/jobs/{row_index}")
+def delete_job(row_index: int):
+    df = job_store.load_jobs()
+    if row_index not in df.index:
+        raise HTTPException(status_code=404, detail="Job not found")
+    job_store.delete_job(df, row_index)
+    return {"ok": True}
 
 
 @router.patch("/jobs/{row_index}/apply")

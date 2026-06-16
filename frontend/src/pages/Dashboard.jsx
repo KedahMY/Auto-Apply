@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { api } from '../api/client'
-import StatusBadge from '../components/StatusBadge'
 
 function StatCard({ label, value, color }) {
   return (
@@ -87,7 +86,6 @@ export default function Dashboard() {
                   <th className="px-4 py-3 text-left font-semibold text-gray-600">Company</th>
                   <th className="px-4 py-3 text-left font-semibold text-gray-600">Job Title</th>
                   <th className="px-4 py-3 text-left font-semibold text-gray-600">Deadline</th>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-600">Method</th>
                   <th className="px-4 py-3 text-left font-semibold text-gray-600">Status</th>
                   <th className="px-4 py-3 text-left font-semibold text-gray-600">Links</th>
                 </tr>
@@ -95,7 +93,7 @@ export default function Dashboard() {
               <tbody className="divide-y divide-gray-50">
                 {filtered.length === 0 && (
                   <tr>
-                    <td colSpan={6} className="px-4 py-8 text-center text-gray-400 italic">
+                    <td colSpan={5} className="px-4 py-8 text-center text-gray-400 italic">
                       No jobs match your filters.
                     </td>
                   </tr>
@@ -112,12 +110,13 @@ export default function Dashboard() {
                       {job.deadline || '—'}
                     </td>
                     <td className="px-4 py-2.5">
-                      {job.email
-                        ? <span className="text-xs text-blue-600 font-medium">Email</span>
-                        : <span className="text-xs text-gray-400">Manual</span>}
-                    </td>
-                    <td className="px-4 py-2.5">
-                      <StatusBadge applied={job.applied} />
+                      {String(job.applied).toLowerCase() === 'true' ? (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 border border-green-200">✓ Applied</span>
+                      ) : (
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${String(job.applied).toLowerCase() === 'no email' ? 'bg-gray-100 text-gray-500' : 'bg-amber-50 text-amber-700'}`}>
+                          {String(job.applied).toLowerCase() === 'no email' ? 'Manual' : 'Pending'}
+                        </span>
+                      )}
                     </td>
                     <td className="px-4 py-2.5">
                       <div className="flex gap-2 text-xs">

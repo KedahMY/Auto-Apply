@@ -52,11 +52,11 @@ async def process_jobs_stream(body: ProcessRequest, request: Request):
 
                 emit({"type": "step", "n": n, "total": total, "row_index": idx,
                       "company": company, "title": title, "step": "cv_tailoring"})
-                tailored = tailor_cv(cv_text, data_lake, job)
+                replacements = tailor_cv(config.CV_FILE, data_lake, job)
 
                 emit({"type": "step", "n": n, "total": total, "row_index": idx,
                       "company": company, "title": title, "step": "cv_building"})
-                cv_path = build_cv_docx(tailored, job)
+                cv_path = build_cv_docx(replacements, job)
                 cv_file = os.path.basename(cv_path)
 
                 emit({"type": "step", "n": n, "total": total, "row_index": idx,
@@ -72,7 +72,7 @@ async def process_jobs_stream(body: ProcessRequest, request: Request):
                       "company": company, "title": title,
                       "cv_file": cv_file, "letter_file": letter_file})
 
-                job_store.mark_letter_done(df, idx)
+                job_store.mark_letter_done(df, idx, cv_file=cv_file, letter_file=letter_file)
 
             emit({"type": "all_done"})
         except Exception as e:
@@ -113,3 +113,59 @@ def download_letter(filename: str):
         raise HTTPException(status_code=404, detail="File not found")
     return FileResponse(path, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                         filename=filename)
+
+
+def _docx_to_pdf(docx_path: str) -> str:
+    """Convert a DOCX to PDF using Word COM (pywin32). Returns the PDF path."""
+    import pythoncom
+    import win32com.client
+
+    pdf_path = docx_path.replace(".docx", ".pdf")
+    abs_docx = os.path.abspath(docx_path)
+    abs_pdf = os.path.abspath(pdf_path)
+
+    # Only re-convert if the DOCX is newer than the cached PDF
+    if os.path.isfile(abs_pdf) and os.path.getmtime(abs_pdf) >= os.path.getmtime(abs_docx):
+        return pdf_path
+
+    pythoncom.CoInitialize()
+    try:
+        word = win32com.client.DispatchEx("Word.Application")
+        word.Visible = False
+        word.DisplayAlerts = False
+        try:
+            doc = word.Documents.Open(abs_docx)
+            doc.SaveAs(abs_pdf, FileFormat=17)  # 17 = wdFormatPDF
+            doc.Close(0)
+        finally:
+            word.Quit()
+    except Exception as exc:
+        raise RuntimeError(f"Word COM PDF conversion failed: {exc}") from exc
+    finally:
+        pythoncom.CoUninitialize()
+
+    return pdf_path
+
+
+@router.get("/documents/cv/{filename}/preview")
+def preview_cv(filename: str):
+    docx_path = os.path.join(config.OUTPUT_CV_DIR, filename)
+    if not os.path.isfile(docx_path):
+        raise HTTPException(status_code=404, detail="File not found")
+    try:
+        pdf_path = _docx_to_pdf(docx_path)
+    except RuntimeError as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    return FileResponse(pdf_path, media_type="application/pdf")
+
+
+@router.get("/documents/letter/{filename}/preview")
+def preview_letter(filename: str):
+    docx_path = os.path.join(config.OUTPUT_LETTER_DIR, filename)
+    if not os.path.isfile(docx_path):
+        raise HTTPException(status_code=404, detail="File not found")
+    try:
+        pdf_path = _docx_to_pdf(docx_path)
+    except RuntimeError as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    return FileResponse(pdf_path, media_type="application/pdf")

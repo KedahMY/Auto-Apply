@@ -28,8 +28,8 @@ from mailer import outlook_sender
 
 def _check_config():
     errors = []
-    if "YOUR_API_KEY" in config.DASHSCOPE_API_KEY:
-        errors.append("Set DASHSCOPE_API_KEY in .env")
+    if "YOUR_API_KEY" in config.DEEPSEEK_API_KEY:
+        errors.append("Set DEEPSEEK_API_KEY in .env")
     if "YOUR_PHPSESSID" in config.SESSION_COOKIE:
         errors.append("Set SESSION_COOKIE (PHPSESSID) in config.py")
     if "Your Full Name" in config.USER_NAME:

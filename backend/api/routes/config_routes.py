@@ -25,6 +25,17 @@ def _save_settings(settings: dict) -> None:
         json.dump(settings, f, indent=2)
 
 
+def apply_settings() -> None:
+    """Apply persisted settings.json onto the live config module.
+
+    Keys in settings.json match config attribute names, so changes saved via
+    the Settings UI survive a server restart. Called once on startup.
+    """
+    for key, value in _load_settings().items():
+        if hasattr(config, key):
+            setattr(config, key, value)
+
+
 def _update_env_key(key: str, value: str) -> None:
     env_path = ".env"
     lines = []
@@ -48,9 +59,9 @@ def _update_env_key(key: str, value: str) -> None:
 @router.get("/config")
 def get_config():
     return {
-        "dashscope_api_key": "***" if config.DASHSCOPE_API_KEY else "",
+        "deepseek_api_key": "***" if config.DEEPSEEK_API_KEY else "",
         "session_cookie": config.SESSION_COOKIE,
-        "model_id": config.DASHSCOPE_MODEL_ID,
+        "model_id": config.DEEPSEEK_MODEL_ID,
         "user_name": config.USER_NAME,
         "user_email": config.USER_EMAIL,
         "bcc_email": config.BCC_EMAIL,
@@ -66,17 +77,17 @@ def get_config():
 def update_config(body: ConfigUpdate):
     settings = _load_settings()
 
-    if body.dashscope_api_key is not None and body.dashscope_api_key != "***":
-        _update_env_key("DASHSCOPE_API_KEY", body.dashscope_api_key)
-        config.DASHSCOPE_API_KEY = body.dashscope_api_key
+    if body.deepseek_api_key is not None and body.deepseek_api_key != "***":
+        _update_env_key("DEEPSEEK_API_KEY", body.deepseek_api_key)
+        config.DEEPSEEK_API_KEY = body.deepseek_api_key
 
     if body.session_cookie is not None:
         config.SESSION_COOKIE = body.session_cookie
         settings["SESSION_COOKIE"] = body.session_cookie
 
     if body.model_id is not None:
-        config.DASHSCOPE_MODEL_ID = body.model_id
-        settings["DASHSCOPE_MODEL_ID"] = body.model_id
+        config.DEEPSEEK_MODEL_ID = body.model_id
+        settings["DEEPSEEK_MODEL_ID"] = body.model_id
 
     if body.user_name is not None:
         config.USER_NAME = body.user_name

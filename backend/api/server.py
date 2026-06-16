@@ -11,6 +11,7 @@ from api.routes import config_routes, email, jobs, process
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    config_routes.apply_settings()
     yield
 
 

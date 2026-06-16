@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { api, processSSE } from '../api/client'
+import { api, processSSE, cvUrl, letterUrl, cvPreviewUrl, letterPreviewUrl } from '../api/client'
 import JobTable from '../components/JobTable'
 import ProgressLog from '../components/ProgressLog'
 
@@ -16,6 +16,7 @@ export default function Jobs() {
   const [selected, setSelected] = useState(new Set())
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
+  const [sortBy, setSortBy] = useState('recent')
 
   // Document generation state
   const [processing, setProcessing] = useState(false)
@@ -23,6 +24,12 @@ export default function Jobs() {
   const [docs, setDocs] = useState({}) // row_index → {cv_file, letter_file}
   const [allDone, setAllDone] = useState(false)
   const stopRef = useRef(null)
+
+  // Per-job regeneration state
+  const [regenLoading, setRegenLoading] = useState({}) // row_index → bool
+
+  // Preview modal state: null | {title, url, iframeLoading}
+  const [previewModal, setPreviewModal] = useState(null)
 
   // Apply panel state
   const [sending, setSending] = useState(false)
@@ -35,6 +42,18 @@ export default function Jobs() {
   }
 
   useEffect(() => { reload() }, [])
+
+  // Rebuild docs from server data after every jobs reload so links survive refresh/navigation
+  useEffect(() => {
+    const fromServer = {}
+    jobs.forEach(j => {
+      if (j.cv_file && j.letter_file) {
+        fromServer[j.row_index] = { cv_file: j.cv_file, letter_file: j.letter_file }
+      }
+    })
+    setDocs(fromServer)
+  }, [jobs])
+
 
   const filtered = jobs.filter(j => {
     const matchSearch = !search ||
@@ -49,6 +68,22 @@ export default function Jobs() {
     return matchSearch && matchStatus
   })
 
+  const sorted = [...filtered].sort((a, b) => {
+    if (sortBy === 'recent') {
+      const da = new Date(b.posting_date), db = new Date(a.posting_date)
+      if (isNaN(da) && isNaN(db)) return 0
+      if (isNaN(da)) return 1
+      if (isNaN(db)) return -1
+      return da - db
+    } else {
+      const da = new Date(a.deadline), db = new Date(b.deadline)
+      if (isNaN(da) && isNaN(db)) return 0
+      if (isNaN(da)) return 1
+      if (isNaN(db)) return -1
+      return da - db
+    }
+  })
+
   function toggleJob(idx) {
     setSelected(prev => {
       const next = new Set(prev)
@@ -58,16 +93,56 @@ export default function Jobs() {
   }
 
   function toggleAll(checked) {
-    setSelected(checked ? new Set(filtered.map(j => j.row_index)) : new Set())
+    setSelected(checked ? new Set(sorted.map(j => j.row_index)) : new Set())
   }
 
   async function handleMarkApplied(rowIndex) {
-    await api.markApplied(rowIndex)
+    try {
+      await api.markApplied(rowIndex)
+      reload()
+    } catch (e) {
+      console.error('Mark applied failed:', e)
+    }
+  }
+
+  async function handleDeleteJob(rowIndex) {
+    await api.deleteJob(rowIndex)
+    setSelected(prev => { const n = new Set(prev); n.delete(rowIndex); return n })
+    setDocs(prev => { const n = { ...prev }; delete n[rowIndex]; return n })
+    reload()
+  }
+
+  async function handleDeleteAll() {
+    if (!window.confirm(`Delete all ${jobs.length} jobs? This cannot be undone.`)) return
+    await api.deleteAllJobs()
+    setSelected(new Set())
+    setDocs({})
+    setAllDone(false)
+    setProcessLog([])
+    setShowApply(false)
     reload()
   }
 
   function addLog(entry) {
     setProcessLog(prev => [...prev, entry])
+  }
+
+  function runGenerate(indices, onDone) {
+    const stop = processSSE(indices, (evt) => {
+      if (evt.type === 'ping') return
+      if (evt.type === 'step') {
+        addLog({ type: 'info', text: `  [${evt.n}/${evt.total}] ${evt.company} — ${evt.title}: ${STEP_LABELS[evt.step] || evt.step}` })
+      } else if (evt.type === 'job_done') {
+        addLog({ type: 'job_done', text: `  ✓ [${evt.n}/${evt.total}] ${evt.company} — ${evt.title} done` })
+        setDocs(prev => ({ ...prev, [evt.row_index]: { cv_file: evt.cv_file, letter_file: evt.letter_file } }))
+      } else if (evt.type === 'all_done') {
+        if (onDone) onDone()
+      } else if (evt.type === 'error') {
+        addLog({ type: 'error', text: `✗ Error: ${evt.message}` })
+        if (onDone) onDone(true)
+      }
+    })
+    return stop
   }
 
   function handleGenerate() {
@@ -79,26 +154,29 @@ export default function Jobs() {
     setShowApply(false)
     setProcessLog([{ type: 'info', text: `Starting document generation for ${indices.length} job(s)...` }])
 
-    const stop = processSSE(indices, (evt) => {
-      if (evt.type === 'ping') return
-      if (evt.type === 'step') {
-        addLog({ type: 'info', text: `  [${evt.n}/${evt.total}] ${evt.company} — ${evt.title}: ${STEP_LABELS[evt.step] || evt.step}` })
-      } else if (evt.type === 'job_done') {
-        addLog({ type: 'job_done', text: `  ✓ [${evt.n}/${evt.total}] ${evt.company} — ${evt.title} done` })
-        setDocs(prev => ({ ...prev, [evt.row_index]: { cv_file: evt.cv_file, letter_file: evt.letter_file } }))
-      } else if (evt.type === 'all_done') {
-        addLog({ type: 'all_done', text: '✓ All documents generated. Review and send applications below.' })
-        setProcessing(false)
+    const stop = runGenerate(indices, (isError) => {
+      setProcessing(false)
+      if (!isError) {
+        addLog({ type: 'all_done', text: '✓ All documents generated. Review below.' })
         setAllDone(true)
         setShowApply(true)
         reload()
-      } else if (evt.type === 'error') {
-        addLog({ type: 'error', text: `✗ Error: ${evt.message}` })
-        setProcessing(false)
       }
     })
-
     stopRef.current = stop
+  }
+
+  function handleRegenerate(rowIndex) {
+    setRegenLoading(prev => ({ ...prev, [rowIndex]: true }))
+    runGenerate([rowIndex], () => {
+      setRegenLoading(prev => ({ ...prev, [rowIndex]: false }))
+      reload()
+    })
+  }
+
+  function openPreview(filename, type, title) {
+    const url = type === 'cv' ? cvPreviewUrl(filename) : letterPreviewUrl(filename)
+    setPreviewModal({ title, url, iframeLoading: true })
   }
 
   async function handleSendEmails() {
@@ -121,6 +199,7 @@ export default function Jobs() {
   const manualJobs = selectedJobsList.filter(j => !j.email && docs[j.row_index])
   const pendingEmailJobs = selectedJobsList.filter(j => j.email)
   const selectedCount = selected.size
+  const generatedEntries = Object.entries(docs)
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-4">
@@ -129,15 +208,37 @@ export default function Jobs() {
           <h2 className="text-2xl font-bold text-gray-900">Jobs</h2>
           <p className="text-sm text-gray-500 mt-0.5">{jobs.length} total jobs tracked</p>
         </div>
-        <button onClick={reload} className="text-sm text-gray-400 hover:text-gray-600">↻ Refresh</button>
+        <div className="flex items-center gap-3">
+          <button onClick={reload} className="text-sm text-gray-400 hover:text-gray-600">↻ Refresh</button>
+          {jobs.length > 0 && (
+            <button onClick={handleDeleteAll}
+              className="text-sm text-red-400 hover:text-red-600 border border-red-200 hover:border-red-400 rounded-lg px-3 py-1.5 transition-colors">
+              Delete All
+            </button>
+          )}
+        </div>
       </div>
 
-      {/* Search + filter bar */}
-      <div className="flex gap-3">
+      {/* Sort + filter bar */}
+      <div className="flex flex-wrap gap-3 items-center">
+        <div className="flex rounded-lg border border-gray-200 overflow-hidden text-sm">
+          <button
+            onClick={() => setSortBy('recent')}
+            className={`px-3 py-2 transition-colors ${sortBy === 'recent' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+          >
+            Most Recent
+          </button>
+          <button
+            onClick={() => setSortBy('deadline')}
+            className={`px-3 py-2 border-l border-gray-200 transition-colors ${sortBy === 'deadline' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+          >
+            By Deadline
+          </button>
+        </div>
         <input
           type="text"
           placeholder="Search company or title..."
-          className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="flex-1 min-w-[180px] border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
@@ -158,12 +259,14 @@ export default function Jobs() {
         <p className="text-center py-10 text-gray-400">Loading jobs...</p>
       ) : (
         <JobTable
-          jobs={filtered}
+          jobs={sorted}
           selected={selected}
           onToggle={toggleJob}
           onToggleAll={toggleAll}
           docs={docs}
           onMarkApplied={handleMarkApplied}
+          onDelete={handleDeleteJob}
+          onPreview={generatedEntries.length > 0 ? openPreview : null}
         />
       )}
 
@@ -202,6 +305,57 @@ export default function Jobs() {
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
           <h3 className="font-semibold text-gray-800 mb-3">Generation Progress</h3>
           <ProgressLog lines={processLog} className="h-48" />
+        </div>
+      )}
+
+      {/* Document results */}
+      {generatedEntries.length > 0 && (
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+          <h3 className="font-semibold text-gray-800 text-lg mb-4">Generated Documents</h3>
+          <div className="space-y-3">
+            {generatedEntries.map(([rowIndexStr, doc]) => {
+              const rowIndex = parseInt(rowIndexStr)
+              const job = jobs.find(j => j.row_index === rowIndex)
+              if (!job) return null
+              const isRegen = regenLoading[rowIndex]
+              return (
+                <div key={rowIndex} className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-medium text-gray-800 flex-1 min-w-[200px]">
+                      {job.company} — {job.job_title}
+                    </span>
+                    <button
+                      onClick={() => openPreview(doc.cv_file, 'cv', `${job.company} — CV`)}
+                      className="text-sm px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
+                    >
+                      Preview CV
+                    </button>
+                    <button
+                      onClick={() => openPreview(doc.letter_file, 'letter', `${job.company} — Cover Letter`)}
+                      className="text-sm px-3 py-1.5 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors"
+                    >
+                      Preview Letter
+                    </button>
+                    <a href={cvUrl(doc.cv_file)} download
+                      className="text-sm px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                      ↓ CV
+                    </a>
+                    <a href={letterUrl(doc.letter_file)} download
+                      className="text-sm px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                      ↓ Letter
+                    </a>
+                    <button
+                      onClick={() => handleRegenerate(rowIndex)}
+                      disabled={isRegen || processing}
+                      className="text-sm px-3 py-1.5 bg-orange-50 text-orange-700 rounded-lg hover:bg-orange-100 disabled:opacity-50 transition-colors"
+                    >
+                      {isRegen ? '⏳ Regenerating...' : '↺ Regenerate'}
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
 
@@ -279,6 +433,37 @@ export default function Jobs() {
               ⚠ {pendingEmailJobs.length} email job(s) selected but documents haven't been generated yet. Generate documents first.
             </p>
           )}
+        </div>
+      )}
+
+      {/* Document preview modal — renders Word-accurate PDF via iframe */}
+      {previewModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden" style={{ width: '92vw', maxWidth: '960px', height: '92vh' }}>
+            <div className="px-5 py-3 border-b border-gray-200 flex items-center justify-between shrink-0">
+              <h3 className="font-semibold text-gray-800 truncate">{previewModal.title}</h3>
+              <button
+                onClick={() => setPreviewModal(null)}
+                className="ml-4 text-gray-400 hover:text-gray-700 text-2xl leading-none shrink-0"
+              >
+                ×
+              </button>
+            </div>
+            <div className="flex-1 relative">
+              {previewModal.iframeLoading && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10 gap-2">
+                  <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                  <p className="text-sm text-gray-400">Converting to PDF…</p>
+                </div>
+              )}
+              <iframe
+                src={previewModal.url}
+                className="w-full h-full border-0"
+                title={previewModal.title}
+                onLoad={() => setPreviewModal(prev => prev ? { ...prev, iframeLoading: false } : null)}
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>

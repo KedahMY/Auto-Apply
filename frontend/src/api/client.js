@@ -17,6 +17,8 @@ async function req(method, path, body) {
 export const api = {
   getJobs: () => req('GET', '/jobs'),
   markApplied: (rowIndex) => req('PATCH', `/jobs/${rowIndex}/apply`),
+  deleteJob: (rowIndex) => req('DELETE', `/jobs/${rowIndex}`),
+  deleteAllJobs: () => req('DELETE', '/jobs'),
   sendEmails: (rowIndices) => req('POST', '/email/send', { row_indices: rowIndices }),
   getConfig: () => req('GET', '/config'),
   updateConfig: (data) => req('PUT', '/config', data),
@@ -106,3 +108,5 @@ export function processSSE(rowIndices, onEvent) {
 
 export function cvUrl(filename) { return `${BASE}/documents/cv/${encodeURIComponent(filename)}` }
 export function letterUrl(filename) { return `${BASE}/documents/letter/${encodeURIComponent(filename)}` }
+export function cvPreviewUrl(filename) { return `${BASE}/documents/cv/${encodeURIComponent(filename)}/preview` }
+export function letterPreviewUrl(filename) { return `${BASE}/documents/letter/${encodeURIComponent(filename)}/preview` }

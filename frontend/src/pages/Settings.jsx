@@ -45,7 +45,7 @@ export default function Settings() {
     api.getConfig().then(data => {
       setCfg(data)
       setForm({
-        dashscope_api_key: '',
+        deepseek_api_key: '',
         session_cookie: data.session_cookie || '',
         model_id: data.model_id || '',
         user_name: data.user_name || '',
@@ -94,16 +94,16 @@ export default function Settings() {
       <h2 className="text-2xl font-bold text-gray-900">Settings</h2>
 
       <Section title="AI Model">
-        <Field label="Dashscope API Key" hint="Leave blank to keep the existing key.">
+        <Field label="Deepseek API Key" hint="Leave blank to keep the existing key.">
           <Input
             type="password"
-            value={form.dashscope_api_key}
-            onChange={v => setField('dashscope_api_key', v)}
+            value={form.deepseek_api_key}
+            onChange={v => setField('deepseek_api_key', v)}
             placeholder="sk-... (leave blank to keep existing)"
           />
         </Field>
         <Field label="Model ID">
-          <Input value={form.model_id} onChange={v => setField('model_id', v)} placeholder="qwen3.6-flash" />
+          <Input value={form.model_id} onChange={v => setField('model_id', v)} placeholder="deepseek-chat" />
         </Field>
       </Section>
 

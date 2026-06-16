@@ -19,8 +19,8 @@ Auto-Apply/
 │   │       ├── jobs.py             # GET /api/jobs, POST /api/jobs/scrape (SSE)
 │   │       └── process.py          # POST /api/process (SSE) — AI + DOCX per job
 │   ├── ai/
-│   │   ├── cover_letter_gen.py     # Cover letter generation via Dashscope
-│   │   └── cv_tailor.py            # CV tailoring via Dashscope
+│   │   ├── cover_letter_gen.py     # Cover letter generation via Deepseek
+│   │   └── cv_tailor.py            # CV tailoring via Deepseek
 │   ├── document/
 │   │   ├── cv_builder.py           # Builds tailored CV as DOCX
 │   │   └── letter_builder.py       # Builds cover letter as DOCX
@@ -64,7 +64,7 @@ Auto-Apply/
 ## Features
 
 - **Filter-first workflow** — pick industry, job type, location, employment mode, and more before scraping
-- **AI-tailored documents** — Dashscope `qwen3.6-flash` rewrites your CV and cover letter for each specific role
+- **AI-tailored documents** — Deepseek `deepseek-chat` rewrites your CV and cover letter for each specific role
 - **Smart apply routing** — auto-sends via Outlook if the recruiter's email is listed; shows the external link and your documents otherwise
 - **Persistent job tracking** — CSV state file deduplicates across runs and records what you've applied to
 - **Web UI** — Dashboard, Scrape, Jobs, and Settings pages with live SSE progress during scraping and AI generation
@@ -85,7 +85,7 @@ python -m venv .venv
 ### 2. Configure secrets — `backend/.env`
 
 ```
-DASHSCOPE_API_KEY=sk-your-key-here
+DEEPSEEK_API_KEY=sk-your-key-here
 ```
 
 ### 3. Configure settings — `backend/config.py`
@@ -146,7 +146,7 @@ The CLI walks through nine steps: filter selection → scrape → display → se
 - Python 3.10+
 - Node.js 18+ (for frontend)
 - A valid HKUST student/staff session cookie
-- A Dashscope API key
+- A Deepseek API key
 
 ---
 

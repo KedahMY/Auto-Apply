@@ -17,7 +17,7 @@ if not exist "%UVICORN%" (
 :: Guard: .env must exist
 if not exist "%ROOT%backend\.env" (
     echo ERROR: backend\.env not found.
-    echo Copy the template and fill in DASHSCOPE_API_KEY.
+    echo Copy the template and fill in DEEPSEEK_API_KEY.
     exit /b 1
 )
 

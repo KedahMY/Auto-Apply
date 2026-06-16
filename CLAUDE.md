@@ -2,6 +2,36 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Frontend testing with Playwright MCP
+
+A Playwright MCP server is available for browser-based QA. Use it to test and verify frontend behaviour without manual clicking:
+
+```
+# The server is already running — use the mcp__playwright__ tools directly.
+# The dev server must be running first:
+cd frontend && npm run dev   # http://localhost:5173
+# or the production build via uvicorn:
+cd backend && ..\.venv\Scripts\uvicorn api.server:app --port 8000
+```
+
+Use Playwright MCP tools (`mcp__playwright__browser_navigate`, `mcp__playwright__browser_snapshot`, `mcp__playwright__browser_click`, `mcp__playwright__browser_fill_form`, etc.) to:
+- Navigate pages and assert content
+- Click buttons and verify state changes
+- Fill forms and check validation
+- Take screenshots for visual verification
+
+Always prefer Playwright MCP over describing what "should" happen — actually open the browser and verify.
+
+## graphify
+
+This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+Rules:
+- ALWAYS read graphify-out/GRAPH_REPORT.md before reading any source files, running grep/glob searches, or answering codebase questions. The graph is your primary map of the codebase.
+- IF graphify-out/wiki/index.md EXISTS, navigate it instead of reading raw files
+- For cross-module "how does X relate to Y" questions, prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"` over grep — these traverse the graph's EXTRACTED + INFERRED edges instead of scanning files
+- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
+
 ## Monorepo structure
 
 ```
@@ -61,7 +91,7 @@ backend/
   │
   ├── state/job_store.py          # Loads/saves hkust_jobs.csv; dedup keyed on (company, job_title)
   │
-  ├── ai/cv_tailor.py             # Calls Dashscope (OpenAI-compat) to rewrite CV text
+  ├── ai/cv_tailor.py             # Calls Deepseek (OpenAI-compat) to rewrite CV text
   ├── ai/cover_letter_gen.py      # Same client; generates cover letter body only
   │
   ├── document/cv_builder.py      # Plain-text AI output → DOCX (ALL-CAPS headings, "- " bullets)
@@ -74,9 +104,9 @@ backend/
 
 ## Configuration
 
-All tuneable values are in `backend/config.py` (gitignored — copy from `backend/config.py.example` to get started). Secrets are in `backend/.env` (loaded by `python-dotenv`). If `DASHSCOPE_API_KEY` is missing, `config.py` raises `KeyError` on import — intentional.
+All tuneable values are in `backend/config.py` (gitignored — copy from `backend/config.py.example` to get started). Secrets are in `backend/.env` (loaded by `python-dotenv`). If `DEEPSEEK_API_KEY` is missing, `config.py` raises `KeyError` on import — intentional.
 
-The Dashscope API is called via the **OpenAI Python SDK** pointed at `https://dashscope.aliyuncs.com/compatible-mode/v1`. Thinking is disabled via `extra_body={"enable_thinking": False}`.
+The Deepseek API is called via the **OpenAI Python SDK** pointed at `https://api.deepseek.com`. Model: `deepseek-chat`.
 
 ## HKUST job board scraping
 
